@@ -30,7 +30,7 @@
         ?>
         <article>
             <img src="user.jpg" alt="blason"/>
-            <h3><?php echo $followers['alias'] ?></h3>
+            <h3><a href="wall.php?user_id=<?php echo $followers['id'] ?>"><?php echo $followers['alias'] ?></a></h3>
             <p>id: <?php echo $followers['id'] ?></p>
         </article>
         <?php } ?>
