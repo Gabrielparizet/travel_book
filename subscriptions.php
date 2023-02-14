@@ -29,13 +29,13 @@
         $lesInformations = $mysqli->query($laQuestionEnSql);
         // Etape 4: à vous de jouer
         //@todo: faire la boucle while de parcours des abonnés et mettre les bonnes valeurs ci dessous
-        while ($followers = $lesInformations ->fetch_assoc()) {
-            // echo "<pre>" . print_r($followers,1) . "</pre>";
+        while ($following = $lesInformations ->fetch_assoc()) {
+            // echo "<pre>" . print_r($following,1) . "</pre>";
         ?>
         <article>
             <img src="user.jpg" alt="blason"/>
-            <h3><?php echo $followers['alias'];?></h3>
-            <p><?php echo $followers['id'];?></p>                    
+            <h3><?php echo $following['alias'];?></h3>
+            <p>id: <?php echo $following['id'];?></p>                    
         </article>
         <?php } ?>
     </main>
