@@ -34,7 +34,7 @@
         ?>
         <article>
             <img src="user.jpg" alt="blason"/>
-            <h3><?php echo $following['alias'];?></h3>
+            <h3><a href="wall.php?user_id=<?php echo $following['id'] ?>"><?php echo $following['alias'] ?></a></h3>
             <p>id: <?php echo $following['id'];?></p>                    
         </article>
         <?php } ?>
