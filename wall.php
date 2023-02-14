@@ -13,11 +13,15 @@
      * Documentation : https://www.php.net/manual/fr/reserved.variables.get.php
      * ... mais en résumé c'est une manière de passer des informations à la page en ajoutant des choses dans l'url
      */
-    $userId =intval($_GET['user_id']);
     ?>
 
     <aside>
         <?php
+            if (isset($_GET['user_id'])){
+                $userId = intval($_GET['user_id']);
+            } else {
+                $userId = intval($_SESSION['connected_id']);
+            }
         /**
          * Etape 3: récupérer le nom de l'utilisateur
          */                
@@ -36,6 +40,7 @@
     </aside>
     <main>
         <?php
+
         /**
          * Etape 3: récupérer tous les messages de l'utilisatrice
          */
@@ -60,6 +65,21 @@
         /**
          * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
          */
+        if (isset($_GET['user_id'])){
+        } else {
+            ?>
+                <article>
+                    <form action="wall.php" method="post">
+                        <input type='hidden' name='???' value='achanger'>
+                        <dl>
+                            <dt><label for='message'>Message</label></dt>
+                            <dd><textarea name='message'></textarea></dd>
+                        </dl>
+                        <input type='submit'>
+                    </form>
+                </article>
+            <?php
+        }
         while ($post = $lesInformations->fetch_assoc())
         {
 
