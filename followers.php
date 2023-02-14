@@ -1,4 +1,7 @@
 <?php include 'index.php' ?>
+
+<title>Suiveurs</title> 
+
 <div id="wrapper">          
     <aside>
         <img src = "user.jpg" alt = "Portrait de l'utilisatrice"/>

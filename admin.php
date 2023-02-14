@@ -2,6 +2,8 @@
     include 'index.php';
 ?>
 
+<title>Admin</title> 
+
 <?php
 //verification
 if ($mysqli->connect_errno)

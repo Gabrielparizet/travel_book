@@ -1,6 +1,9 @@
 <?php
     include 'index.php';
 ?>
+
+<title>Mots-clés</title> 
+
 <div id="wrapper">
     <?php
     $tagId = intval($_GET['tag_id']);

@@ -1,6 +1,8 @@
 <?php 
     include 'index.php';
 ?>
+
+<title>Paramètres</title> 
 <div id="wrapper" class='profile'>
     <aside>
         <img src="user.jpg" alt="Portrait de l'utilisatrice"/>

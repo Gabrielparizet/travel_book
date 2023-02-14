@@ -1,6 +1,8 @@
 <?php 
     include 'index.php';
 ?>
+
+<title>Abonnements</title> 
 <div id="wrapper">
     <aside>
         <img src="user.jpg" alt="Portrait de l'utilisatrice"/>

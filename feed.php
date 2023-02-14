@@ -1,6 +1,9 @@
 <?php 
     include 'index.php';
 ?>
+
+<title>Flux</title> 
+
 <div id="wrapper">
     <?php
     /**
