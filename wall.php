@@ -1,5 +1,5 @@
 <?php 
-    include 'index.php';
+    include 'header.php';
 ?>
 
 <title>Mur</title> 
@@ -40,7 +40,6 @@
     </aside>
     <main>
         <?php
-
         /**
          * Etape 3: récupérer tous les messages de l'utilisatrice
          */
@@ -67,6 +66,20 @@
          */
         if (isset($_GET['user_id'])){
         } else {
+            $postContent = $_POST['message'];
+            $postContent = $mysqli->real_escape_string($postContent);
+            $lInstructionSql = "INSERT INTO posts "
+            .  "(user_id, content) "
+            . "VALUES (" . $user_id . ", " . $postContent . ")";
+            $ok = $mysqli->query($lInstructionSql);
+                if ( ! $ok)
+                {
+                    echo "Impossible d'ajouter le message: " . $mysqli->error;
+                } else
+                {
+                    echo "Message posté en tant que :" . $listAuteurs[$user_id];
+                }
+
             ?>
                 <article>
                     <form action="wall.php" method="post">

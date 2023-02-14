@@ -1,7 +1,6 @@
 <?php 
     session_start();
     // print_r ($_SESSION['connected_id']);
-    
 ?>
 <!doctype html>
 <html lang="fr">

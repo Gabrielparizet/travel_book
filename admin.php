@@ -1,5 +1,5 @@
 <?php 
-    include 'index.php';
+    include 'header.php';
 ?>
 
 <title>Admin</title> 
@@ -18,7 +18,7 @@ if ($mysqli->connect_errno)
         <?php
         /*
             * Etape 2 : trouver tous les mots clés
-            */
+        */
         $laQuestionEnSql = "SELECT * FROM `tags` LIMIT 50";
         $lesInformations = $mysqli->query($laQuestionEnSql);
         // Vérification

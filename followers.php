@@ -1,4 +1,4 @@
-<?php include 'index.php' ?>
+<?php include 'header.php' ?>
 
 <title>Suiveurs</title> 
 

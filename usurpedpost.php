@@ -1,9 +1,5 @@
 <?php
-session_start();
-?>
-
-<?php
-    include 'index.php';
+    include 'header.php';
 ?>
 <div id="wrapper" >
 
@@ -70,7 +66,9 @@ session_start();
                 {
                     echo "Message posté en tant que :" . $listAuteurs[$authorId];
                 }
-            }   }
+                }   
+            }
+
             ?>                     
             <form action="usurpedpost.php" method="post">
                 <input type='hidden' name='???' value='achanger'>
