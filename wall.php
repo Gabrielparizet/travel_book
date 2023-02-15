@@ -69,8 +69,11 @@
             $postContent = $_POST['message'];
             $postContent = $mysqli->real_escape_string($postContent);
             $lInstructionSql = "INSERT INTO posts "
-            .  "(user_id, content) "
-            . "VALUES (" . $user_id . ", " . $postContent . ")";
+                        . "(id, user_id, content, created) "
+                        . "VALUES (NULL, "
+                        . $userId . ", "
+                        . "'" . $postContent . "', "
+                        . "NOW())";
             $ok = $mysqli->query($lInstructionSql);
                 if ( ! $ok)
                 {
@@ -83,12 +86,12 @@
             ?>
                 <article>
                     <form action="wall.php" method="post">
-                        <input type='hidden' name='???' value='achanger'>
+                        <input type='hidden' name='message' value='achanger'>
                         <dl>
                             <dt><label for='message'>Message</label></dt>
                             <dd><textarea name='message'></textarea></dd>
                         </dl>
-                        <input type='submit'>
+                        <input type='submit' value="Send">
                     </form>
                 </article>
             <?php
