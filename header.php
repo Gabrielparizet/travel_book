@@ -1,5 +1,9 @@
 <?php 
     session_start();
+    if ($_POST['logout']){
+        session_destroy();
+        header('Location: login.php');
+    }
     // print_r ($_SESSION['connected_id']);
 ?>
 <!doctype html>
@@ -24,6 +28,11 @@
                     <li><a href="settings.php">Paramètres</a></li>
                     <li><a href="followers.php">Mes suiveurs</a></li>
                     <li><a href="subscriptions.php">Mes abonnements</a></li>
+                    <li>
+                        <form method='post'>
+                            <input type='submit' name='logout' value='Se déconnecter'></input>
+                        </form>
+                    </li>
                 </ul>
             </nav>
         </header>
