@@ -59,7 +59,7 @@
                 if ( ! $ok){
                     echo "Impossible d'ajouter le message: " . $mysqli->error;
                 } else {
-                    echo "Message posté en tant que :" . $user_id;
+                    echo "Message posté en tant que :" . $userId;
                 }
             }
             ?>
