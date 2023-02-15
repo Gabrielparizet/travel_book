@@ -11,7 +11,7 @@
                 $userId = intval($_GET['user_id']);
             } else {
                 $userId = intval($_SESSION['connected_id']);
-            }     
+            } 
         $laQuestionEnSql = "SELECT * FROM users WHERE id= '$userId' ";
         $lesInformations = $mysqli->query($laQuestionEnSql);
         $user = $lesInformations->fetch_assoc();
@@ -21,6 +21,32 @@
             <h3>Présentation</h3>
             <p>Sur cette page vous trouverez tous les message de l'utilisatrice : <?php echo $user['alias']; ?>
             </p>
+            <?php 
+                if (isset($_GET['user_id'])){
+                    if ($_POST['follow']) {
+                        $userId = intval($_GET['user_id']); 
+                        $followingId = intval($_SESSION['connected_id']);
+                        $followersSql = "INSERT INTO followers "
+                        . "(id, followed_user_id, following_user_id) "
+                        . "VALUES (NULL, "
+                        . $userId . ", "
+                        . $followingId . ")";
+                        $ok = $mysqli->query($followersSql);
+                        if ( ! $ok){
+                            echo "Impossible de suivre cet utilisateur." . $mysqli->error;
+                        } else {
+                            echo "Vous suivez maintenant cet utilisateur.";
+                        }
+                    }
+            ?>
+            <form method='post'>
+                <input type='submit' name='follow' value='suivre'>
+                </input>
+            </form>
+            <?php 
+                } else {
+                } 
+             ?>
         </section>
     </aside>
     <main>
