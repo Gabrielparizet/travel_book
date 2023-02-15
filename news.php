@@ -29,6 +29,7 @@
         $laQuestionEnSql = "
             SELECT posts.content,
             posts.created,
+            posts.id as postID,
             users.alias as author_name, 
             users.id as user_id, 
             count(likes.id) as like_number,  
@@ -51,7 +52,21 @@
             echo("<p>Indice: Vérifiez la requete  SQL suivante dans phpmyadmin<code>$laQuestionEnSql</code></p>");
             exit();
         }
-
+        $sessionId = intval($_SESSION['connected_id']);
+        // Création de likes.
+        if ($_POST['like']){
+            $post = $lesInformations->fetch_assoc();
+            $likeSql = "INSERT INTO likes"
+            . "(id, user_id, post_id)"
+            . "VALUES (NULL, " . $sessionId . ", " . $post['postID'] . ")";
+            $ok = $mysqli->query($likeSql);
+            if ( ! $ok){
+                echo "Impossible d'aimer ce poste." . $mysqli->error;
+            } else {
+            }
+            header('Location: news.php');
+        }   
+        
         // Création des articles
         while ($post = $lesInformations->fetch_assoc()) { 
             // echo "<pre>" . print_r($post, 1) . "</pre>";
@@ -65,7 +80,15 @@
                     <p><?php echo $post['content']?></p>
                 </div>
                 <footer>
-                    <small>♥<?php echo $post['like_number'] ?></small>
+                    <small>
+                        <form method="post">
+                            <input type="submit" name="like" value="♥">
+                            <?php 
+                                echo $post['like_number'];
+                            ?>
+                            </input>
+                        </form>
+                    </small>
                     <?php 
                         $tag = $post['taglist'];
                         $arrayOfTags = explode(",",$tag);
