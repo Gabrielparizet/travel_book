@@ -1,12 +1,5 @@
 <?php 
     include 'header.php';
-    if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['like_post_id'])) {
-        // var_dump($_SESSION['connected_id'], $_POST['like_post_id']);
-            $likeSqlRequest = "INSERT INTO likes"
-            . "(id, user_id, post_id)"
-            . "VALUES (NULL, " . $_SESSION['connected_id'] . ", " . $_POST['like_post_id'] . ")";
-            $ok = $mysqli->query($likeSqlRequest);
-    }
 ?>
 
 <title>Actualités</title> 
@@ -66,6 +59,20 @@
         // Création des articles
         while ($post = $lesInformations->fetch_assoc()) { 
             // echo "<pre>" . print_r($post, 1) . "</pre>";
+            $likeSessionID = $_SESSION['connected_id'];
+            $postSessionId = $post['postID'];
+            $hasBeenLikedSql = "SELECT likes.id FROM likes WHERE user_id = $likeSessionID AND post_id = $postSessionId";
+            $informationsLikes = $mysqli->query($hasBeenLikedSql);
+            $likeInfos = $informationsLikes->fetch_assoc();
+            print_r($informationsLikes);
+            if (empty($informationsLikes)){
+                if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['like_post_id'])) {
+                    // var_dump($_SESSION['connected_id'], $_POST['like_post_id']);
+                        $likeSqlRequest = "INSERT INTO likes"
+                        . "(id, user_id, post_id)"
+                        . "VALUES (NULL, " . $_SESSION['connected_id'] . ", " . $_POST['like_post_id'] . ")";
+                        $ok = $mysqli->query($likeSqlRequest);
+            }
             ?>
             <article>
                 <h3>
