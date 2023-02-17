@@ -1,5 +1,8 @@
 <?php 
     include 'header.php';
+    if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['like_post_id'])) {
+        var_dump($_POST['like_post_id'], $_SESSION['connected_id']); die;
+    }
 ?>
 
 <title>Actualités</title> 
@@ -53,6 +56,9 @@
             exit();
         }
         $sessionId = intval($_SESSION['connected_id']);
+
+        // Création des likes
+        
         // Création des articles
         while ($post = $lesInformations->fetch_assoc()) { 
             // echo "<pre>" . print_r($post, 1) . "</pre>";
@@ -67,8 +73,9 @@
                 </div>
                 <footer>
                     <small>
-                        <form method="post">
-                            <input type="submit" name="<?php $post['postID'] ?>" value="♥">
+                        <form action="news.php" method="post">
+                            <input type="text" class="hidden" name="like_post_id" value=<?php echo $post['postID']?>>
+                            <input type="submit" name="like" value="♥">
                             <?php 
                                 echo $post['like_number'];
                             ?>
