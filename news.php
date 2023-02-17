@@ -75,7 +75,7 @@
                     <small>
                         <form action="news.php" method="post">
                             <input type="text" class="hidden" name="like_post_id" value=<?php echo $post['postID']?>>
-                            <input type="submit" name="like" value="♥">
+                            <input type="submit" value="♥">
                             <?php 
                                 echo $post['like_number'];
                             ?>
