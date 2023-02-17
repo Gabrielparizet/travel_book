@@ -84,9 +84,9 @@
                     <form action="feed.php" method="post">
                             <input type="hidden" name="like_post_id" value=<?php echo $post['postID']?>>
                                 <input type="submit" value="♥">
-                                <?php 
-                                    echo $post['like_number'];
-                                ?>
+                                    <?php 
+                                        echo $post['like_number'];
+                                    ?>
                                 </input>
                             </input>
                     </form>
