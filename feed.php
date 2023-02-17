@@ -1,19 +1,18 @@
 <?php 
     include 'header.php';
+    if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['like_post_id'])) {
+        // var_dump($_SESSION['connected_id'], $_POST['like_post_id']);
+            $likeSqlRequest = "INSERT INTO likes"
+            . "(id, user_id, post_id)"
+            . "VALUES (NULL, " . $_SESSION['connected_id'] . ", " . $_POST['like_post_id'] . ")";
+            $ok = $mysqli->query($likeSqlRequest);
+    }
 ?>
 
 <title>Flux</title> 
 
 <div id="wrapper">
     <?php
-    /**
-     * Cette page est TRES similaire à wall.php. 
-     * Vous avez sensiblement à y faire la meme chose.
-     * Il y a un seul point qui change c'est la requete sql.
-     */
-    /**
-     * Etape 1: Le mur concerne un utilisateur en particulier
-     */
     $userId = intval($_SESSION['connected_id']);
     ?>
 
@@ -45,6 +44,7 @@
         $laQuestionEnSql = "
             SELECT posts.content,
             posts.created,
+            posts.id as postID,
             users.alias as author_name,  
             count(likes.id) as like_number,  
             users.id as user_id,
@@ -80,7 +80,17 @@
                 <p><?php echo $post['content'] ?></p>
             </div>                                            
             <footer>
-                <small>♥ <?php echo $post['like_number'] ?></small>
+                <small>
+                    <form action="feed.php" method="post">
+                            <input type="hidden" name="like_post_id" value=<?php echo $post['postID']?>>
+                                <input type="submit" value="♥">
+                                <?php 
+                                    echo $post['like_number'];
+                                ?>
+                                </input>
+                            </input>
+                    </form>
+                </small>
                 <?php 
                         $tag = $post['taglist'];
                         $arrayOfTags = explode(",",$tag);
