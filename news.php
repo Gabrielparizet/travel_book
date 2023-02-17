@@ -1,7 +1,11 @@
 <?php 
     include 'header.php';
     if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['like_post_id'])) {
-        var_dump($_POST['like_post_id'], $_SESSION['connected_id']); die;
+        // var_dump($_SESSION['connected_id'], $_POST['like_post_id']);
+            $likeSqlRequest = "INSERT INTO likes"
+            . "(id, user_id, post_id)"
+            . "VALUES (NULL, " . $_SESSION['connected_id'] . ", " . $_POST['like_post_id'] . ")";
+            $ok = $mysqli->query($likeSqlRequest);
     }
 ?>
 
@@ -74,11 +78,12 @@
                 <footer>
                     <small>
                         <form action="news.php" method="post">
-                            <input type="text" class="hidden" name="like_post_id" value=<?php echo $post['postID']?>>
-                            <input type="submit" value="♥">
-                            <?php 
-                                echo $post['like_number'];
-                            ?>
+                            <input type="hidden" name="like_post_id" value=<?php echo $post['postID']?>>
+                                <input type="submit" value="♥">
+                                <?php 
+                                    echo $post['like_number'];
+                                ?>
+                                </input>
                             </input>
                         </form>
                     </small>
