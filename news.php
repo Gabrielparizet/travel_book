@@ -70,6 +70,19 @@
         // Création des articles
         while ($post = $lesInformations->fetch_assoc()) { 
             // echo "<pre>" . print_r($post, 1) . "</pre>";
+            // Création de likes.
+            if ($_POST['like']){
+                $post = $lesInformations->fetch_assoc();
+                $likeSql = "INSERT INTO likes"
+                . "(id, user_id, post_id)"
+                . "VALUES (NULL, " . $sessionId . ", " . $post['postID'] . ")";
+                $ok = $mysqli->query($likeSql);
+                if ( ! $ok){
+                    echo "Impossible d'aimer ce poste." . $mysqli->error;
+                } else {
+                }
+                header('Location: news.php');
+            }   
             ?>
             <article>
                 <h3>
