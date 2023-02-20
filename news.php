@@ -55,24 +55,27 @@
         $sessionId = intval($_SESSION['connected_id']);
 
         // Création des likes
-        
+        if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['like_post_id'])) {
+                $likeSqlRequest = "INSERT INTO likes"
+                . "(id, user_id, post_id)"
+                . "VALUES (NULL, " . $_SESSION['connected_id'] . ", " . $_POST['like_post_id'] . ")";
+                $ok = $mysqli->query($likeSqlRequest);
+                if ( ! $ok){
+                    echo "Impossible d'aimer ce poste." . $mysqli->error;
+                } else {
+                }
+                header('Location: news.php');
+        }
+            
         // Création des articles
         while ($post = $lesInformations->fetch_assoc()) { 
             // echo "<pre>" . print_r($post, 1) . "</pre>";
             $likeSessionID = $_SESSION['connected_id'];
-            $postSessionId = $post['postID'];
-            $hasBeenLikedSql = "SELECT likes.id FROM likes WHERE user_id = $likeSessionID AND post_id = $postSessionId";
+            $postSessionID = $post['postID'];
+            $hasBeenLikedSql = "SELECT likes.id FROM likes WHERE user_id = $likeSessionID AND post_id = $postSessionID";
             $informationsLikes = $mysqli->query($hasBeenLikedSql);
             $likeInfos = $informationsLikes->fetch_assoc();
-            print_r($informationsLikes);
-            if (empty($informationsLikes)){
-                if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['like_post_id'])) {
-                    // var_dump($_SESSION['connected_id'], $_POST['like_post_id']);
-                        $likeSqlRequest = "INSERT INTO likes"
-                        . "(id, user_id, post_id)"
-                        . "VALUES (NULL, " . $_SESSION['connected_id'] . ", " . $_POST['like_post_id'] . ")";
-                        $ok = $mysqli->query($likeSqlRequest);
-            }
+            // var_dump($_SESSION['connected_id'], $postSessionID);
             ?>
             <article>
                 <h3>
@@ -84,15 +87,25 @@
                 </div>
                 <footer>
                     <small>
-                        <form action="news.php" method="post">
-                            <input type="hidden" name="like_post_id" value=<?php echo $post['postID']?>>
-                                <input type="submit" value="♥">
-                                <?php 
-                                    echo $post['like_number'];
+                        <?php 
+                            if (isset($likeInfos) == false){
                                 ?>
-                                </input>
-                            </input>
-                        </form>
+                                <form action="news.php" method="post">
+                                    <input type="hidden" name="like_post_id" value="<?php echo $post['postID']?>"/>
+                                        <input type="submit" value="♥"/>
+                                            <?php 
+                                                echo $post['like_number'] ;
+                                            ?>
+                                </form>
+                                <?php
+                            } else {
+                                ?>
+                                    <div>
+                                        <?php echo $post['like_number'];?>♥
+                                    </div>
+                                <?php
+                            }
+                        ?>
                     </small>
                     <?php 
                         $tag = $post['taglist'];
