@@ -2,17 +2,17 @@
     include 'header.php';
 ?>
 
-<title>Inscription</title> 
+<title>Registration</title> 
 
 <div id="wrapper" >
 
     <aside>
-        <h2>Présentation</h2>
-        <p>Bienvenu sur notre réseau social.</p>
+        <h2>Description</h2>
+        <p>Welcome on our social network.</p>
     </aside>
     <main>
         <article>
-            <h2>Inscription</h2>
+            <h2>Registration</h2>
             <?php
             /**
              * TRAITEMENT DU FORMULAIRE
@@ -64,11 +64,11 @@
             <form action="registration.php" method="post">
                 <input type='hidden'name='???' value='achanger'>
                 <dl>
-                    <dt><label for='pseudo'>Pseudo</label></dt>
+                    <dt><label for='pseudo'>Nickname</label></dt>
                     <dd><input type='text'name='pseudo'></dd>
                     <dt><label for='email'>E-Mail</label></dt>
                     <dd><input type='email'name='email'></dd>
-                    <dt><label for='motpasse'>Mot de passe</label></dt>
+                    <dt><label for='motpasse'>Password</label></dt>
                     <dd><input type='password'name='motpasse'></dd>
                 </dl>
                 <input type='submit'>

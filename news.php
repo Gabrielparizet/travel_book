@@ -2,15 +2,14 @@
     include 'header.php';
 ?>
 
-<title>Actualités</title> 
+<title>News</title> 
 
 <div id="wrapper">
     <aside>
         <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
         <section>
-            <h3>Présentation</h3>
-            <p>Sur cette page vous trouverez les derniers messages de
-                tous les utilisatrices du site.</p>
+            <h3>Description</h3>
+            <p>On this page you will find the lastest posts of all the users on this social network. </p>
         </section>
     </aside>
     <main>

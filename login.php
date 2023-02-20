@@ -4,8 +4,8 @@
 
 <div id="wrapper" >
     <aside>
-        <h2>Présentation</h2>
-        <p>Bienvenu sur notre réseau social.</p>
+        <h2>Description</h2>
+        <p>Welcome on our social network</p>
     </aside>
     <main>
         <article>
@@ -65,14 +65,14 @@
                 <dl>
                     <dt><label for='email'>E-Mail</label></dt>
                     <dd><input type='email'name='email'></dd>
-                    <dt><label for='motpasse'>Mot de passe</label></dt>
+                    <dt><label for='motpasse'>Password</label></dt>
                     <dd><input type='password'name='motpasse'></dd>
                 </dl>
                 <input type='submit'>
             </form>
             <p>
-                Pas de compte?
-                <a href='registration.php'>Inscrivez-vous.</a>
+                No account yet ?
+                <a href='registration.php'>Sign in.</a>
             </p>
 
         </article>

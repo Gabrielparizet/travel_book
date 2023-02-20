@@ -17,12 +17,12 @@
         <header>
             <a href='admin.php'><img src="resoc.jpg" alt="Logo de notre réseau social"/></a>
             <nav id="menu">
-                <a href="news.php">Actualités</a>
-                <a href="feed.php">Flux</a>
-                <a href="tags.php?tag_id=1">Mots-clés</a>
+                <a href="news.php">News</a>
+                <a href="feed.php">Feed</a>
+                <a href="tags.php?tag_id=1">Keywords</a>
             </nav>
             <nav id="user">
-                <a href="#">▾ Profil</a>
+                <a href="#">▾ Profile</a>
                 <ul>
                     <li><a href="settings.php">Settings</a></li>
                     <li><a href="followers.php">My followers</a></li>
