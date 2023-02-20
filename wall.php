@@ -2,7 +2,7 @@
     include 'header.php';
 ?>
 
-<title>Mur</title> 
+<title>My wall</title> 
 
 <div id="wrapper">
     <aside>
@@ -23,7 +23,7 @@
             </p>
             <?php 
                 if (isset($_GET['user_id'])){
-                    if ($_POST['follow']) {
+                    if (isset($_POST['follow'])) {
                         $userId = intval($_GET['user_id']); 
                         $followingId = intval($_SESSION['connected_id']);
                         $followersSql = "INSERT INTO followers "
