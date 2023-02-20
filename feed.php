@@ -6,14 +6,6 @@
 
 <div id="wrapper">
     <?php
-    /**
-     * Cette page est TRES similaire à wall.php. 
-     * Vous avez sensiblement à y faire la meme chose.
-     * Il y a un seul point qui change c'est la requete sql.
-     */
-    /**
-     * Etape 1: Le mur concerne un utilisateur en particulier
-     */
     $userId = intval($_SESSION['connected_id']);
     ?>
 
@@ -45,6 +37,7 @@
         $laQuestionEnSql = "
             SELECT posts.content,
             posts.created,
+            posts.id as postID,
             users.alias as author_name,  
             count(likes.id) as like_number,  
             users.id as user_id,
@@ -64,12 +57,27 @@
         {
             echo("Échec de la requete : " . $mysqli->error);
         }
-        /**
-         * Etape 4: todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
-         * A vous de retrouver comment faire la boucle while de parcours...
-         */
+
+            // Création des likes
+            if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['like_post_id'])) {
+                $likeSqlRequest = "INSERT INTO likes"
+                . "(id, user_id, post_id)"
+                . "VALUES (NULL, " . $_SESSION['connected_id'] . ", " . $_POST['like_post_id'] . ")";
+                $ok = $mysqli->query($likeSqlRequest);
+                if ( ! $ok){
+                    echo "Impossible d'aimer ce poste." . $mysqli->error;
+                } else {
+                }
+                header('Location: feed.php');
+            }
+
         while ($post = $lesInformations->fetch_assoc()) {
             // echo "<pre>" . print_r($post, 1) . "</pre>";
+            $likeSessionID = $_SESSION['connected_id'];
+            $postSessionID = $post['postID'];
+            $hasBeenLikedSql = "SELECT likes.id FROM likes WHERE user_id = $likeSessionID AND post_id = $postSessionID";
+            $informationsLikes = $mysqli->query($hasBeenLikedSql);
+            $likeInfos = $informationsLikes->fetch_assoc();
         ?>                
         <article>
             <h3>
@@ -80,7 +88,27 @@
                 <p><?php echo $post['content'] ?></p>
             </div>                                            
             <footer>
-                <small>♥ <?php echo $post['like_number'] ?></small>
+                <small>
+                    <?php 
+                        if (isset($likeInfos) == false){
+                            ?>
+                            <form action="feed.php" method="post">
+                                <input type="hidden" name="like_post_id" value="<?php echo $post['postID']?>"/>
+                                    <input type="submit" value="♥"/>
+                                        <?php 
+                                            echo $post['like_number'] ;
+                                        ?>
+                            </form>
+                            <?php
+                        } else {
+                            ?>
+                                <div>
+                                    <?php echo $post['like_number'];?>♥
+                                </div>
+                            <?php
+                        }
+                    ?>
+                </small>
                 <?php 
                         $tag = $post['taglist'];
                         $arrayOfTags = explode(",",$tag);

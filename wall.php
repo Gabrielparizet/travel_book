@@ -52,7 +52,7 @@
     <main>
         <?php
         $laQuestionEnSql = "
-            SELECT posts.content, posts.created, users.alias as author_name, users.id as user_id, 
+            SELECT posts.content, posts.created, posts.id as postID, users.alias as author_name, users.id as user_id, 
             COUNT(likes.id) as like_number, GROUP_CONCAT(DISTINCT tags.label) AS taglist 
             FROM posts
             JOIN users ON  users.id=posts.user_id
@@ -101,9 +101,27 @@
                 </article>
             <?php
         }
+
+        // Création des likes
+        if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['like_post_id'])) {
+            $likeSqlRequest = "INSERT INTO likes"
+            . "(id, user_id, post_id)"
+            . "VALUES (NULL, " . $_SESSION['connected_id'] . ", " . $_POST['like_post_id'] . ")";
+            $ok = $mysqli->query($likeSqlRequest);
+            if ( ! $ok){
+                echo "Impossible d'aimer ce poste." . $mysqli->error;
+            } else {
+            }
+            $post = $lesInformations->fetch_assoc();
+            header('Location: wall.php');
+        }
             
-        while ($post = $lesInformations->fetch_assoc())
-        {
+        while ($post = $lesInformations->fetch_assoc()){
+            $likeSessionID = $_SESSION['connected_id'];
+            $postSessionID = $post['postID'];
+            $hasBeenLikedSql = "SELECT likes.id FROM likes WHERE user_id = $likeSessionID AND post_id = $postSessionID";
+            $informationsLikes = $mysqli->query($hasBeenLikedSql);
+            $likeInfos = $informationsLikes->fetch_assoc();
             // echo "<pre>" . print_r($post, 1) . "</pre>";
             ?>                
             <article>
@@ -116,7 +134,27 @@
                     <p><?php echo $post['content'];?></p>
                 </div>                                            
                 <footer>
-                    <small>♥ <?php echo $post['like_number'];?></small>
+                    <small>
+                    <?php 
+                        if (isset($likeInfos) == false){
+                    ?>
+                        <form action="wall.php" method="post">
+                            <input type="hidden" name="like_post_id" value="<?php echo $post['postID']?>"/>
+                                <input type="submit" value="♥"/>
+                                    <?php 
+                                        echo $post['like_number'] ;
+                                        ?>
+                        </form>
+                                <?php
+                            } else {
+                                ?>
+                                    <div>
+                                        <?php echo $post['like_number'];?>♥
+                                    </div>
+                                <?php
+                            }
+                        ?>
+                    </small>
                     <?php 
                     $tag = $post['taglist'];
                     $arrayOfTags = explode(",",$tag);
