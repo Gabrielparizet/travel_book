@@ -1,4 +1,5 @@
 <?php 
+    if ($_POST('like'))
     $likeSqlRequest = $mysqli->real_escape_string($_POST['like']);
         $likeSql = "INSERT INTO likes"
         . "(id, user_id, post_id)"
