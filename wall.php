@@ -38,7 +38,7 @@
                             echo "Vous suivez maintenant cet utilisateur.";
                         }
                     }
-            ?>
+            ?>  
             <form method='post'>
                 <input type='submit' name='follow' value='suivre'>
                 </input>
@@ -46,7 +46,28 @@
             <?php 
                 } else {
                 } 
+                $followedSql = "
+                    SELECT COUNT(followed_user_id) as totalfollowed FROM followers WHERE followed_user_id='$userId'
+                ";
+                $infos = $mysqli->query($followedSql);
+                if ( ! $infos)
+                {
+                    echo("Échec de la requete : " . $mysqli->error . $followedSql);
+                }
+                $numberOfFollowedUsers = $infos->fetch_assoc()['totalfollowed'];
+
+                $followingSql = "
+                    SELECT COUNT(following_user_id) as totalfollowing FROM followers WHERE following_user_id='$userId'
+                ";
+                $infos = $mysqli->query($followingSql);
+                if ( ! $infos)
+                {
+                    echo("Échec de la requete : " . $mysqli->error . $followingSql);
+                }
+                $numberOfFollowingUsers = $infos->fetch_assoc()['totalfollowing'];
              ?>
+             <p>Followed by : <?php echo $numberOfFollowedUsers?></p>
+             <p>Following : <?php echo $numberOfFollowingUsers?></p>
         </section>
     </aside>
     <main>
