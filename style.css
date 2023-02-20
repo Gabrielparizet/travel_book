@@ -1,4 +1,4 @@
-body{
+/* body{
     background-color: #003;
     font-family: Arial;
 }
@@ -157,4 +157,229 @@ pre{
 
 form dl dt{float:left;font-weight: bold;line-height: 1.5em;}
 form dl dd{margin-left:10em;line-height: 1.5em;margin-bottom: 1em}
-form dl dd textarea{width:40em;height: 15em;}
+form dl dd textarea{width:40em;height: 15em;} */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+*{
+    list-style: none;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body{
+    background: #f5f6fa;
+    
+}
+
+/* SIDEBAR */
+
+.menu .sidebar{
+    /* background: #F1FFC8;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 225px;
+    height: 100%;
+    padding: 20px 0;
+    transition: all 0.5s ease;  */
+  
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #F1FFC8;
+    overflow-x: hidden;
+    padding-top: 20px;
+       
+}
+
+/* .menu .sidebar a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+  } */
+
+/* MISE EN PAGE : MENU */
+
+.menu .sidebar ul li a{
+    display: block;
+    padding: 13px 30px;
+    /* border-bottom: 1px solid #10558d; */
+    color: #1F2021;
+    font-size: 16px;
+    position: relative;
+}
+
+.menu .sidebar ul li a .icon{
+    width: 30px;
+    display: inline-block;
+}
+
+/* CREATING HOVER */
+
+.menu .sidebar ul li a:hover,
+.menu .sidebar ul li a.active{
+    /* color: #0c7db1; */
+
+    background:#BAFE66;
+    /* border-right: 2px solid rgb(5, 68, 104); */
+}
+
+/* .wrapper .sidebar ul li a:hover .icon,
+.wrapper .sidebar ul li a.active .icon{
+    color: #0c7db1;
+}
+
+.wrapper .sidebar ul li a:hover:before,
+.wrapper .sidebar ul li a.active:before{
+    display: block;
+} */
+
+
+
+
+#wrapper{
+    display:black;    
+    width:100vh;
+    margin:0 auto 5em auto;
+    
+}
+
+
+#wrapper aside{
+    background-color: #fff;
+    /* flex:2; */
+    padding:1em;
+    border-radius: 1em;    
+}
+#wrapper img{
+    display: block;
+    width:50%;
+    margin:auto;
+}
+
+#wrapper main{
+    /* flex:3; */
+    padding-left:1em;
+    height: 100vh;
+    overflow-y:  scroll;
+    margin-left: 120px ;
+    
+}
+#wrapper main article{
+    background-color: #fff;
+    padding:1em;
+    margin-bottom: 1em ;
+    border-radius: 1em;
+}
+#wrapper main article h3{
+    margin:0;
+    padding:0;
+    font-weight: normal;
+    font-size:1em;
+
+}
+/* #wrapper main article time{
+    float:left;
+}
+#wrapper main article address{
+    text-align: right;
+    margin-bottom: 1em;
+}
+#wrapper main article p{
+    margin:0;
+}
+#wrapper main article footer{
+    margin-top: 1em;
+    text-align: right;
+}
+#wrapper main article footer small{
+    float:left;
+}  */
+
+                                /* #wrapper.admin{flex-direction: row-reverse}
+                                #wrapper.admin aside{flex:1;margin-left:1em;border-radius:0;padding:0;}
+                                #wrapper.admin main{flex:2;background-color: #fff;border-radius: 0;padding:0;}
+                                #wrapper.admin h2{text-align: center;}
+                                #wrapper.admin h3{margin:0;}
+                                #wrapper.admin nav{text-align: right;}
+                                #wrapper.admin article{border:1px solid #ddd;border-radius: 1em;padding:1em;margin:1em;}
+                                #wrapper.admin article p{float:left;margin:0;}
+
+
+                                .parameters dl dt{float:left;font-weight: bold;line-height: 1.5em;}
+                                .parameters dl dd{margin-left:15em;line-height: 1.5em;} */
+
+/* .contacts {
+    display:flex;
+    flex-wrap: wrap;
+    align-items:flex-start;
+    align-content: flex-start ;
+}
+.contacts article{
+    width:25em;
+    height:7em;
+    margin-right: 1em;
+}
+.contacts article img{
+    float:right;
+    height: 5em;
+}
+
+pre{
+    color:#aaa;
+}
+
+form dl dt{float:left;font-weight: bold;line-height: 1.5em;}
+form dl dd{margin-left:10em;line-height: 1.5em;margin-bottom: 1em}
+form dl dd textarea{width:40em;height: 15em;} */
+
+
+
+/* Search_bar */
+
+.search {
+    width: 80%;
+    left: 70px;
+    position: relative;
+    display: flex;
+    padding: 10px 5px;
+  }
+  
+  .searchTerm {
+    width: 100%;
+    border: 3px solid #000000;
+    border-right: none;
+    padding: 10px;
+    height: 50px;
+    border-radius: 100px 0 0 100px;
+    outline: none;
+    color: #9DBFAF;
+  }
+  
+  .searchTerm:focus{
+    color: #000000;
+  }
+  
+  .searchButton {
+    width: 40px;
+    height: 50px;
+    border: 1px solid #000000;
+    background: #000000;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 100px 100px 0;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  
+  /*Resize the wrap to see the search bar change!*/
+ 

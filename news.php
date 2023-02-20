@@ -5,15 +5,23 @@
 <title>Actualités</title> 
 
 <div id="wrapper">
-    <aside>
+    <!-- <aside>
         <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
         <section>
             <h3>Présentation</h3>
             <p>Sur cette page vous trouverez les derniers messages de
                 tous les utilisatrices du site.</p>
         </section>
-    </aside>
+    </aside> -->
     <main>
+        <div class="wrap">
+            <div class="search">
+                <input type="text" class="searchTerm" placeholder="What are you looking for?">
+                <button type="submit" class="searchButton">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </div>
         <?php
         // Gestion d'erreurs
         if ($mysqli->connect_errno)
@@ -65,7 +73,7 @@
                 <div>
                     <p><?php echo $post['content']?></p>
                 </div>
-                <footer>
+          
                     <small>
                         <form method="post">
                             <input type="submit" name="<?php $post['postID'] ?>" value="♥">
@@ -83,11 +91,11 @@
                             echo '<a href="">' . "#" . $arrayOfTags[$index] . '</a>' . ' ';
                         }
                     ?>
-                </footer>
             </article>
             <?php
         }
         ?>
+        
     </main>
 </div>
 

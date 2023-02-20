@@ -5,6 +5,7 @@
 <title>Flux</title> 
 
 <div id="wrapper">
+    <main>
     <?php
     /**
      * Cette page est TRES similaire à wall.php. 
@@ -17,7 +18,7 @@
     $userId = intval($_SESSION['connected_id']);
     ?>
 
-    <aside>
+    <!-- <aside> -->
         <?php
         /**
          * Etape 3: récupérer le nom de l'utilisateur
@@ -36,8 +37,8 @@
             </p>
 
         </section>
-    </aside>
-    <main>
+    <!-- </aside> -->
+    <!-- <main> -->
         <?php
         /**
          * Etape 3: récupérer tous les messages des abonnements

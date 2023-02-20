@@ -11,17 +11,58 @@
     <head>
         <meta charset="utf-8">
         <meta name="author" content="Julien Falconnet">
-        <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <header>
-            <a href='admin.php'><img src="resoc.jpg" alt="Logo de notre réseau social"/></a>
-            <nav id="menu">
-                <a href="news.php">Actualités</a>
-                <a href="wall.php">Mur</a>
-                <a href="feed.php">Flux</a>
-                <a href="tags.php?tag_id=1">Mots-clés</a>
-            </nav>
+        <aside>
+        <!-- <header> -->
+            <!-- <a href='admin.php'><img src="resoc.jpg" alt="Logo de notre réseau social"/></a> -->
+            <!-- <nav id="menu"> -->
+
+        <div class="menu">
+                 <!--Top menu -->
+             <div class="sidebar">
+                <!--menu item-->
+            <ul>
+                <li>
+                    <a href="news.php">
+                        <span class = "icon"><i class="fas fa-home"></i></span>
+                        <span class = "item">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="wall.php">
+                        <span class = "icon"><i class="fas fa-desktop"></i></span>
+                        <span class = "item">Wall</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="feed.php">
+                        <span class = "icon"><i class="fas fa-user-friends"></i></span>
+                        <span class = "item">Feed</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tags.php?tag_id=1">
+                        <span class = "icon"><i class="fas fa-database"></i></span>
+                        <span class = "item">Tags</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#"></a>
+                        <span class = "icon"><i class="fas fa-account"></i></span>
+                        <span class = "item">Profile</span>
+                </li>
+                <li>
+                    <form method='post'>
+                    <input type='submit' name='logout' value='Se déconnecter'></input>
+                    </form>
+                </li>
+
+            <ul> 
+            <!-- </nav> -->
+<!-- 
             <nav id="user">
                 <a href="#">▾ Profil</a>
                 <ul>
@@ -34,13 +75,17 @@
                         </form>
                     </li>
                 </ul>
-            </nav>
-        </header>
+            </nav>  -->
+    
+        <!-- </header> -->
+            
             <main>
             <!-- Connexion à la base de donnée -->
             <?php
                 $mysqli = new mysqli("localhost", "root", "root", "socialnetwork");
             ?>
+            
         </main>
+        </aside>
     </body>
 </html>

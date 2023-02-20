@@ -5,7 +5,8 @@
 <title>Mur</title> 
 
 <div id="wrapper">
-    <aside>
+    <main>
+    <!-- <aside> -->
         <?php
             if (isset($_GET['user_id'])){
                 $userId = intval($_GET['user_id']);
@@ -48,8 +49,8 @@
                 } 
              ?>
         </section>
-    </aside>
-    <main>
+    <!-- </aside> -->
+    <!-- <main> -->
         <?php
         $laQuestionEnSql = "
             SELECT posts.content, posts.created, users.alias as author_name, users.id as user_id, 

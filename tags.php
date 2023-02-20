@@ -5,10 +5,11 @@
 <title>Mots-clés</title> 
 
 <div id="wrapper">
+<main>
     <?php
     $tagId = intval($_GET['tag_id']);
     ?>
-    <aside>
+    <!-- <aside> -->
         <?php
         /**
          * Etape 3: récupérer le nom du mot-clé
@@ -26,8 +27,8 @@
                 le mot-clé <?php echo $tag['label']; ?>.
             </p>
         </section>
-    </aside>
-    <main>
+    <!-- </aside> -->
+    <!-- <main> -->
         <?php
         /**
          * Etape 3: récupérer tous les messages avec un mot clé donné
@@ -83,7 +84,5 @@
                 </footer>
             </article>
         <?php } ?>
-
-
     </main>
 </div>
