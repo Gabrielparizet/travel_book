@@ -13,10 +13,15 @@
         </section>
     </aside>
     <main>
+        <div>
+            <form class="citySearch" action="news.php" method="get">
+                <input type="text" name="locationSearchBar" placeholder="Search for a location">
+                <button type="submit"></button>
+            </form>
+        </div>
         <?php
         // Gestion d'erreurs
-        if ($mysqli->connect_errno)
-        {
+        if ($mysqli->connect_errno){
             echo "<article>";
             echo("Échec de la connexion : " . $mysqli->connect_error);
             echo("<p>Indice: Vérifiez les parametres de <code>new mysqli(...</code></p>");
@@ -24,8 +29,9 @@
             exit();
         }
 
-        // Requête SQL articles
-        $laQuestionEnSql = "
+        if ($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['locationSearchBar'])){
+            $locationSearchKeyWord = $_GET['locationSearchBar'];
+            $laQuestionEnSql = "
             SELECT posts.content,
             posts.created,
             posts.id as postID,
@@ -38,18 +44,45 @@
             LEFT JOIN posts_tags ON posts.id = posts_tags.post_id  
             LEFT JOIN tags       ON posts_tags.tag_id  = tags.id 
             LEFT JOIN likes      ON likes.post_id  = posts.id 
+            WHERE tags.label = '" . $locationSearchKeyWord . "'
             GROUP BY posts.id
             ORDER BY posts.created DESC  
-            LIMIT 5
             ";
-        $lesInformations = $mysqli->query($laQuestionEnSql);
-        // Vérification
-        if ( ! $lesInformations)
-        {
-            echo "<article>";
-            echo("Échec de la requete : " . $mysqli->error);
-            echo("<p>Indice: Vérifiez la requete  SQL suivante dans phpmyadmin<code>$laQuestionEnSql</code></p>");
-            exit();
+            $lesInformations = $mysqli->query($laQuestionEnSql);
+            // Vérification
+            if ( ! $lesInformations){
+                echo "<article>";
+                echo("Échec de la requete : " . $mysqli->error);
+                echo("<p>Indice: Vérifiez la requete  SQL suivante dans phpmyadmin<code>$laQuestionEnSql</code></p>");
+                exit();
+            }
+        } else {
+            // Requête SQL articles
+            $laQuestionEnSql = "
+                SELECT posts.content,
+                posts.created,
+                posts.id as postID,
+                users.alias as author_name, 
+                users.id as user_id, 
+                count(likes.id) as like_number,  
+                GROUP_CONCAT(DISTINCT tags.label) AS taglist 
+                FROM posts
+                JOIN users ON  users.id=posts.user_id
+                LEFT JOIN posts_tags ON posts.id = posts_tags.post_id  
+                LEFT JOIN tags       ON posts_tags.tag_id  = tags.id 
+                LEFT JOIN likes      ON likes.post_id  = posts.id 
+                GROUP BY posts.id
+                ORDER BY posts.created DESC  
+                LIMIT 5
+                ";
+            $lesInformations = $mysqli->query($laQuestionEnSql);
+            // Vérification
+            if ( ! $lesInformations){
+                echo "<article>";
+                echo("Échec de la requete : " . $mysqli->error);
+                echo("<p>Indice: Vérifiez la requete  SQL suivante dans phpmyadmin<code>$laQuestionEnSql</code></p>");
+                exit();
+            }
         }
         $sessionId = intval($_SESSION['connected_id']);
 
