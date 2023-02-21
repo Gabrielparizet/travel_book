@@ -97,45 +97,85 @@
             } else {
                 $cityHashTagContent = $_POST['cityHashtag'];
                 $cityHashTagContent = $mysqli->real_escape_string($cityHashTagContent);
-                $postContent = $_POST['message'];
-                $postContent = $mysqli->real_escape_string($postContent);
-                $lInstructionSqlHashtag = "INSERT INTO tags "
-                . "(id, label) "
-                . "VALUES (NULL, '" . $cityHashTagContent . "')";
+                $lInstructionSqlHashtag = "SELECT id as location_id, label as location_label FROM tags WHERE label = '" . $cityHashTagContent . "'";
                 $okHashTag = $mysqli->query($lInstructionSqlHashtag);
                 if ( ! $okHashTag){
-                    echo "Impossible d'ajouter le hashtag: " . $mysqli->error;
+                    echo ":HashTagProblem " . $mysqli->error;
                 } else {
-                    echo "Hashtag posté en tant que :";
+                    echo "Posted in: ";
                 }
-                $requestTagIdInfos = "SELECT LAST_INSERT_ID() as tagPostId";
-                $informationTagId = $mysqli->query($requestTagIdInfos);
-                $tagIdInfos = $informationTagId->fetch_assoc();
-                $tag_id = $tagIdInfos['tagPostId'];
-                $lInstructionSql = "INSERT INTO posts "
-                . "(id, user_id, content, created) "
-                . "VALUES (NULL, "
-                . $userId . ", "
-                . "'" . $postContent . "', "
-                . "NOW())";
-                $ok = $mysqli->query($lInstructionSql);
-                if ( ! $ok){
-                    echo "Impossible d'ajouter le message: " . $mysqli->error;
+                $checkingLocationInfos = $okHashTag->fetch_assoc();
+                $tag_id = $checkingLocationInfos['location_id'];
+                $tagInfo = $checkingLocationInfos['location_label'];
+                if ($cityHashTagContent == $tagInfo){
+                    $postContent = $_POST['message'];
+                    $postContent = $mysqli->real_escape_string($postContent);
+                    $lInstructionSql = "INSERT INTO posts "
+                    . "(id, user_id, content, created) "
+                    . "VALUES (NULL, "
+                    . $userId . ", "
+                    . "'" . $postContent . "', "
+                    . "NOW())";
+                    $ok = $mysqli->query($lInstructionSql);
+                    if ( ! $ok){
+                        echo "Impossible d'ajouter le message: " . $mysqli->error;
+                    } else {
+                        echo "Message posté en tant que :" . $userId;   
+                    }
+                    $requestPostIdInfos = "SELECT LAST_INSERT_ID() as postTagId";
+                    $informationPostId = $mysqli->query($requestPostIdInfos);
+                    $postIdInfos = $informationPostId->fetch_assoc();
+                    $post_id = $postIdInfos['postTagId'];
+                    $lInstructionSqlPostHashtag = "INSERT INTO posts_tags "
+                    . "(id, post_id, tag_id) "
+                    . "VALUES(NULL, " . $post_id . ", " . $tag_id . ")";
+                    $okPostTag = $mysqli->query($lInstructionSqlPostHashtag);
+                    if ( ! $okPostTag){
+                        echo "Impossible d'ajouter le tag: " . $mysqli->error;
+                    } else {
+                        echo "tag posté en tant que :";
+                    }
                 } else {
-                    echo "Message posté en tant que :" . $userId;   
-                }
-                $requestPostIdInfos = "SELECT LAST_INSERT_ID() as postTagId";
-                $informationPostId = $mysqli->query($requestPostIdInfos);
-                $postIdInfos = $informationPostId->fetch_assoc();
-                $post_id = $postIdInfos['postTagId'];
-                $lInstructionSqlPostHashtag = "INSERT INTO posts_tags "
-                . "(id, post_id, tag_id) "
-                . "VALUES(NULL, " . $post_id . ", " . $tag_id . ")";
-                $okPostTag = $mysqli->query($lInstructionSqlPostHashtag);
-                if ( ! $okPostTag){
-                    echo "Impossible d'ajouter le tag: " . $mysqli->error;
-                } else {
-                    echo "tag posté en tant que :";
+                    $lInstructionSqlHashtag = "INSERT INTO tags "
+                    . "(id, label) "
+                    . "VALUES (NULL, '" . $cityHashTagContent . "')";
+                    $okHashTag = $mysqli->query($lInstructionSqlHashtag);
+                    if ( ! $okHashTag){
+                        echo "Impossible d'ajouter le hashtag: " . $mysqli->error;
+                    } else {
+                        echo "Hashtag posté en tant que :";
+                    }
+                    $requestTagIdInfos = "SELECT LAST_INSERT_ID() as tagPostId";
+                    $informationTagId = $mysqli->query($requestTagIdInfos);
+                    $tagIdInfos = $informationTagId->fetch_assoc();
+                    $tag_id = $tagIdInfos['tagPostId'];
+                    $postContent = $_POST['message'];
+                    $postContent = $mysqli->real_escape_string($postContent);
+                    $lInstructionSql = "INSERT INTO posts "
+                    . "(id, user_id, content, created) "
+                    . "VALUES (NULL, "
+                    . $userId . ", "
+                    . "'" . $postContent . "', "
+                    . "NOW())";
+                    $ok = $mysqli->query($lInstructionSql);
+                    if ( ! $ok){
+                        echo "Impossible d'ajouter le message: " . $mysqli->error;
+                    } else {
+                        echo "Message posté en tant que :" . $userId;   
+                    }
+                    $requestPostIdInfos = "SELECT LAST_INSERT_ID() as postTagId";
+                    $informationPostId = $mysqli->query($requestPostIdInfos);
+                    $postIdInfos = $informationPostId->fetch_assoc();
+                    $post_id = $postIdInfos['postTagId'];
+                    $lInstructionSqlPostHashtag = "INSERT INTO posts_tags "
+                    . "(id, post_id, tag_id) "
+                    . "VALUES(NULL, " . $post_id . ", " . $tag_id . ")";
+                    $okPostTag = $mysqli->query($lInstructionSqlPostHashtag);
+                    if ( ! $okPostTag){
+                        echo "Impossible d'ajouter le tag: " . $mysqli->error;
+                    } else {
+                        echo "tag posté en tant que :";
+                    }
                 }
             }
             ?>
