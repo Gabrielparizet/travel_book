@@ -9,25 +9,6 @@
     $userId = intval($_SESSION['connected_id']);
     ?>
 
-    <aside>
-        <?php
-        /**
-         * Etape 3: récupérer le nom de l'utilisateur
-         */
-        $laQuestionEnSql = "SELECT * FROM `users` WHERE id= '$userId' ";
-        $lesInformations = $mysqli->query($laQuestionEnSql);
-        $user = $lesInformations->fetch_assoc();
-        //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
-        // echo "<pre>" . print_r($user, 1) . "</pre>";
-        ?>
-        <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
-        <section>
-            <h3>Description</h3>
-            <p>On this page you will find all the posts of people followed by the user : <?php echo $user['alias'] ?>
-            </p>
-
-        </section>
-    </aside>
     <main>
         <?php
         /**
