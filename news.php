@@ -5,13 +5,6 @@
 <title>News</title> 
 
 <div id="wrapper">
-    <aside>
-        <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
-        <section>
-            <h3>Description</h3>
-            <p>On this page you will find the lastest posts of all the users on this social network. </p>
-        </section>
-    </aside>
     <main>
         <div>
             <form class="citySearch" action="news.php" method="get">
