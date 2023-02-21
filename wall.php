@@ -94,8 +94,23 @@
             if (empty($_POST['message'])){
                 echo "Impossible d'ajouter le message sans contenu.";
             } else {
+                $cityHashTagContent = $_POST['cityHashtag'];
+                $cityHashTagContent = $mysqli->real_escape_string($cityHashTagContent);
                 $postContent = $_POST['message'];
                 $postContent = $mysqli->real_escape_string($postContent);
+                $lInstructionSqlHashtag = "INSERT INTO tags "
+                . "(id, label) "
+                . "VALUES (NULL, '" . $cityHashTagContent . "')";
+                $okHashTag = $mysqli->query($lInstructionSqlHashtag);
+                if ( ! $okHashTag){
+                    echo "Impossible d'ajouter le hashtag: " . $mysqli->error;
+                } else {
+                    echo "Hashtag posté en tant que :";
+                }
+                $requestTagIdInfos = "SELECT LAST_INSERT_ID() as tagPostId";
+                $informationTagId = $mysqli->query($requestTagIdInfos);
+                $tagIdInfos = $informationTagId->fetch_assoc();
+                $tag_id = $tagIdInfos['tagPostId'];
                 $lInstructionSql = "INSERT INTO posts "
                 . "(id, user_id, content, created) "
                 . "VALUES (NULL, "
@@ -106,7 +121,20 @@
                 if ( ! $ok){
                     echo "Impossible d'ajouter le message: " . $mysqli->error;
                 } else {
-                    echo "Message posté en tant que :" . $userId;
+                    echo "Message posté en tant que :" . $userId;   
+                }
+                $requestPostIdInfos = "SELECT LAST_INSERT_ID() as postTagId";
+                $informationPostId = $mysqli->query($requestPostIdInfos);
+                $postIdInfos = $informationPostId->fetch_assoc();
+                $post_id = $postIdInfos['postTagId'];
+                $lInstructionSqlPostHashtag = "INSERT INTO posts_tags "
+                . "(id, post_id, tag_id) "
+                . "VALUES(NULL, " . $post_id . ", " . $tag_id . ")";
+                $okPostTag = $mysqli->query($lInstructionSqlPostHashtag);
+                if ( ! $okPostTag){
+                    echo "Impossible d'ajouter le tag: " . $mysqli->error;
+                } else {
+                    echo "tag posté en tant que :";
                 }
             }
             ?>
@@ -115,7 +143,11 @@
                         <input type='hidden' name='message' value='achanger'>
                         <dl>
                             <dt><label for='message'>Message</label></dt>
-                            <dd><textarea name='message'></textarea></dd>
+                            <dd># Location
+                                <br>
+                                <input type="text" name="cityHashtag"><br><br>
+                                <textarea name='message'></textarea>
+                            </dd>
                         </dl>
                         <input type='submit' value="Send">
                     </form>
