@@ -164,9 +164,9 @@
             if ( ! $ok){
                 echo "Impossible d'aimer ce poste." . $mysqli->error;
             } else {
+                header('Location: wall.php');
             }
             $post = $lesInformations->fetch_assoc();
-            header('Location: wall.php');
         }
             
         while ($post = $lesInformations->fetch_assoc()){
