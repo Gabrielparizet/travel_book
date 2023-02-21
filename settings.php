@@ -2,14 +2,13 @@
     include 'header.php';
 ?>
 
-<title>Paramètres</title> 
+<title>Settings</title> 
 <div id="wrapper" class='profile'>
     <aside>
         <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
         <section>
-            <h3>Présentation</h3>
-            <p>Sur cette page vous trouverez les informations de l'utilisatrice
-                n° <?php echo intval($_SESSION['connected_id']) ?></p>
+            <h3>Description</h3>
+            <p>On this page you will find the informations about user number :  <?php echo intval($_SESSION['connected_id']) ?></p>
 
         </section>
     </aside>
@@ -41,17 +40,17 @@
         // echo "<pre>" . print_r($user, 1) . "</pre>";
         ?>                
         <article class='parameters'>
-            <h3>Mes paramètres</h3>
+            <h3>My settings</h3>
             <dl>
-                <dt>Pseudo</dt>
+                <dt>Nickname</dt>
                 <dd><?php echo $user['alias']?></dd>
                 <dt>Email</dt>
                 <dd><?php echo $user['email']?></dd>
-                <dt>Nombre de message</dt>
+                <dt>Number of posts</dt>
                 <dd><?php echo $user['totalpost']?></dd>
-                <dt>Nombre de "J'aime" donnés </dt>
+                <dt>Number of likes given </dt>
                 <dd><?php echo $user['totalgiven']?></dd>
-                <dt>Nombre de "J'aime" reçus</dt>
+                <dt>Number of likes received</dt>
                 <dd><?php echo $user['totalrecieved']?></dd>
             </dl>
 

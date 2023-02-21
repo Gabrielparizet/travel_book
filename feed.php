@@ -2,7 +2,7 @@
     include 'header.php';
 ?>
 
-<title>Flux</title> 
+<title>Feed</title> 
 
 <div id="wrapper">
     <?php
@@ -22,9 +22,8 @@
         ?>
         <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
         <section>
-            <h3>Présentation</h3>
-            <p>Sur cette page vous trouverez tous les message des utilisatrices
-                auxquel est abonnée l'utilisatrice <?php echo $user['alias'] ?>
+            <h3>Description</h3>
+            <p>On this page you will find all the posts of people followed by the user : <?php echo $user['alias'] ?>
             </p>
 
         </section>
@@ -83,7 +82,7 @@
             <h3>
                 <time datetime='2020-02-01 11:12:13' ><?php echo $post['created'] ?></time>
             </h3>
-            <address>par <a href="wall.php?user_id=<?php echo $post['user_id'] ?>"><?php echo $post['author_name'] ?></a></address>
+            <address>by <a href="wall.php?user_id=<?php echo $post['user_id'] ?>"><?php echo $post['author_name'] ?></a></address>
             <div>
                 <p><?php echo $post['content'] ?></p>
             </div>                                            

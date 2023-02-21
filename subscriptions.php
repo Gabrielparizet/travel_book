@@ -2,16 +2,15 @@
     include 'header.php';
 ?>
 
-<title>Abonnements</title> 
+<title>Subscriptions</title> 
 <div id="wrapper">
     <aside>
         <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
         <section>
-            <h3>Présentation</h3>
-            <p>Sur cette page vous trouverez la liste des personnes dont
-                l'utilisatrice
-                n° <?php echo intval($_SESSION['connected_id']) ?>
-                suit les messages
+            <h3>Description</h3>
+            <p>On this page you will find the list of people that user number : 
+                <?php echo intval($_SESSION['connected_id']) ?>
+                follows.
             </p>
 
         </section>
