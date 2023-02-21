@@ -5,10 +5,11 @@
 <title>Keywords</title> 
 
 <div id="wrapper">
+<main>
     <?php
     $tagId = intval($_GET['tag_id']);
     ?>
-    <aside>
+    <!-- <aside> -->
         <?php
         /**
          * Etape 3: récupérer le nom du mot-clé
@@ -25,8 +26,8 @@
             <p>On this page you will find the lastest posts that takes in the keyword :  <?php echo $tag['label']; ?>.
             </p>
         </section>
-    </aside>
-    <main>
+    <!-- </aside> -->
+    <!-- <main> -->
         <?php
         /**
          * Etape 3: récupérer tous les messages avec un mot clé donné
@@ -82,7 +83,5 @@
                 </footer>
             </article>
         <?php } ?>
-
-
     </main>
 </div>

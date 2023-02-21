@@ -5,7 +5,8 @@
 <title>My wall</title> 
 
 <div id="wrapper">
-    <aside>
+    <main>
+    <!-- <aside> -->
         <?php
             if (isset($_GET['user_id'])){
                 $userId = intval($_GET['user_id']);
@@ -69,8 +70,8 @@
              <p>Followed by : <?php echo $numberOfFollowedUsers?></p>
              <p>Following : <?php echo $numberOfFollowingUsers?></p>
         </section>
-    </aside>
-    <main>
+    <!-- </aside> -->
+    <!-- <main> -->
         <?php
         $laQuestionEnSql = "
             SELECT posts.content, posts.created, posts.id as postID, users.alias as author_name, users.id as user_id, 
