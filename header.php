@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    if ($_POST['logout']){
+    if (isset($_POST['logout'])){
         session_destroy();
         header('Location: login.php');
     }
@@ -15,77 +15,64 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <aside>
+        <!-- <aside> -->
         <!-- <header> -->
             <!-- <a href='admin.php'><img src="resoc.jpg" alt="Logo de notre réseau social"/></a> -->
             <!-- <nav id="menu"> -->
 
         <div class="menu">
                  <!--Top menu -->
+            <?php if (isset($_SESSION['connected_id'])) { ?>
              <div class="sidebar">
                 <!--menu item-->
-            <ul>
-                <li>
-                    <a href="news.php">
-                        <span class = "icon"><i class="fas fa-home"></i></span>
-                        <span class = "item">Home</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="wall.php">
-                        <span class = "icon"><i class="fas fa-desktop"></i></span>
-                        <span class = "item">Wall</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="feed.php">
-                        <span class = "icon"><i class="fas fa-user-friends"></i></span>
-                        <span class = "item">Feed</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="tags.php?tag_id=1">
-                        <span class = "icon"><i class="fas fa-database"></i></span>
-                        <span class = "item">Tags</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#"></a>
-                        <span class = "icon"><i class="fas fa-account"></i></span>
-                        <span class = "item">Profile</span>
-                </li>
-                <li>
-                    <form method='post'>
-                    <input type='submit' name='logout' value='Se déconnecter'></input>
-                    </form>
-                </li>
-
-            <ul> 
-            <!-- </nav> -->
-<!-- 
-            <nav id="user">
-                <a href="#">▾ Profil</a>
                 <ul>
-                    <li><a href="settings.php">Paramètres</a></li>
-                    <li><a href="followers.php">Mes suiveurs</a></li>
-                    <li><a href="subscriptions.php">Mes abonnements</a></li>
                     <li>
-                        <form method='post'>
-                            <input type='submit' name='logout' value='Se déconnecter'></input>
-                        </form>
+                        <a href="news.php">
+                            <span class = "icon"><i class="fas fa-home"></i></span>
+                            <span class = "item">Home</span>
+                        </a>
                     </li>
-                </ul>
-            </nav>  -->
+                    <li>
+                        <a href="wall.php">
+                            <span class = "icon"><i class="fas fa-desktop"></i></span>
+                            <span class = "item">Wall</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href='feed.php?user_id=<?php echo $_SESSION['connected_id']?>'>
+                            <span class = "icon"><i class="fas fa-user-friends"></i></span>
+                            <span class = "item">Feed</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tags.php?tag_id=1">
+                            <span class = "icon"><i class="fas fa-database"></i></span>
+                            <span class = "item">Tags</span>
+                        </a>
+                    
+                    </li>
+            <?php } ?>
+                    <nav id="user">
+                        <?php if (isset($_SESSION['connected_id'])) { ?>
+                            <a href="#">▾ Profile</a>
+                            <ul>
+                                <li><a href='settings.php'>Settings</a></li>
+                                <li><a href='wall.php'>My Wall</a></li>
+                                <li>
+                                    <form method='post'>
+                                        <input type='submit' name='logout' value='Se déconnecter'></input>
+                                    </form>
+                                </li> 
+                            </ul>
+                        <?php } ?>
+                    </nav>
+                </ul> 
+            </div>
+        </div>
     
-        <!-- </header> -->
+        <!-- Connexion à la base de donnée -->
+        <?php                
+            $mysqli = new mysqli("localhost", "root", "root", "socialnetwork");
+        ?>
+
             
-            <main>
-            <!-- Connexion à la base de donnée -->
-            <?php
-                $mysqli = new mysqli("localhost", "root", "root", "socialnetwork");
-            ?>
-            
-        </main>
-        </aside>
-    </body>
-</html>

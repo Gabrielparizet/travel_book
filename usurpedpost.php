@@ -4,13 +4,12 @@
 <div id="wrapper" >
 
     <aside>
-        <h2>Présentation</h2>
-        <p>Sur cette page on peut poster un message en se faisant 
-            passer pour quelqu'un d'autre</p>
+        <h2>Description</h2>
+        <p>On this page you can post a message pretending you are someone else</p>
     </aside>
     <main>
         <article>
-            <h2>Poster un message</h2>
+            <h2>Post a message</h2>
             <?php
             /**
              * Récupération de la liste des auteurs
@@ -73,14 +72,14 @@
             <form action="usurpedpost.php" method="post">
                 <input type='hidden' name='???' value='achanger'>
                 <dl>
-                    <dt><label for='auteur'>Auteur</label></dt>
+                    <dt><label for='auteur'>Author</label></dt>
                     <dd><select name='auteur'>
                             <?php
                             foreach ($listAuteurs as $id => $alias)
                                 echo "<option value='$id'>$alias</option>";
                             ?>
                         </select></dd>
-                    <dt><label for='message'>Message</label></dt>
+                    <dt><label for='message'>Post</label></dt>
                     <dd><textarea name='message'></textarea></dd>
                 </dl>
                 <input type='submit'>

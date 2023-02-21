@@ -2,7 +2,7 @@
     include 'header.php';
 ?>
 
-<title>Mur</title> 
+<title>My wall</title> 
 
 <div id="wrapper">
     <main>
@@ -19,12 +19,12 @@
         ?>
         <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
         <section>
-            <h3>Présentation</h3>
-            <p>Sur cette page vous trouverez tous les message de l'utilisatrice : <?php echo $user['alias']; ?>
+            <h3>Description</h3>
+            <p>On this page you will find every posts of : <?php echo $user['alias']; ?>
             </p>
             <?php 
                 if (isset($_GET['user_id'])){
-                    if ($_POST['follow']) {
+                    if (isset($_POST['follow'])) {
                         $userId = intval($_GET['user_id']); 
                         $followingId = intval($_SESSION['connected_id']);
                         $followersSql = "INSERT INTO followers "
@@ -39,7 +39,7 @@
                             echo "Vous suivez maintenant cet utilisateur.";
                         }
                     }
-            ?>
+            ?>  
             <form method='post'>
                 <input type='submit' name='follow' value='suivre'>
                 </input>
@@ -47,13 +47,34 @@
             <?php 
                 } else {
                 } 
+                $followedSql = "
+                    SELECT COUNT(followed_user_id) as totalfollowed FROM followers WHERE followed_user_id='$userId'
+                ";
+                $infos = $mysqli->query($followedSql);
+                if ( ! $infos)
+                {
+                    echo("Échec de la requete : " . $mysqli->error . $followedSql);
+                }
+                $numberOfFollowedUsers = $infos->fetch_assoc()['totalfollowed'];
+
+                $followingSql = "
+                    SELECT COUNT(following_user_id) as totalfollowing FROM followers WHERE following_user_id='$userId'
+                ";
+                $infos = $mysqli->query($followingSql);
+                if ( ! $infos)
+                {
+                    echo("Échec de la requete : " . $mysqli->error . $followingSql);
+                }
+                $numberOfFollowingUsers = $infos->fetch_assoc()['totalfollowing'];
              ?>
+             <p>Followed by : <?php echo $numberOfFollowedUsers?></p>
+             <p>Following : <?php echo $numberOfFollowingUsers?></p>
         </section>
     <!-- </aside> -->
     <!-- <main> -->
         <?php
         $laQuestionEnSql = "
-            SELECT posts.content, posts.created, users.alias as author_name, users.id as user_id, 
+            SELECT posts.content, posts.created, posts.id as postID, users.alias as author_name, users.id as user_id, 
             COUNT(likes.id) as like_number, GROUP_CONCAT(DISTINCT tags.label) AS taglist 
             FROM posts
             JOIN users ON  users.id=posts.user_id
@@ -74,8 +95,23 @@
             if (empty($_POST['message'])){
                 echo "Impossible d'ajouter le message sans contenu.";
             } else {
+                $cityHashTagContent = $_POST['cityHashtag'];
+                $cityHashTagContent = $mysqli->real_escape_string($cityHashTagContent);
                 $postContent = $_POST['message'];
                 $postContent = $mysqli->real_escape_string($postContent);
+                $lInstructionSqlHashtag = "INSERT INTO tags "
+                . "(id, label) "
+                . "VALUES (NULL, '" . $cityHashTagContent . "')";
+                $okHashTag = $mysqli->query($lInstructionSqlHashtag);
+                if ( ! $okHashTag){
+                    echo "Impossible d'ajouter le hashtag: " . $mysqli->error;
+                } else {
+                    echo "Hashtag posté en tant que :";
+                }
+                $requestTagIdInfos = "SELECT LAST_INSERT_ID() as tagPostId";
+                $informationTagId = $mysqli->query($requestTagIdInfos);
+                $tagIdInfos = $informationTagId->fetch_assoc();
+                $tag_id = $tagIdInfos['tagPostId'];
                 $lInstructionSql = "INSERT INTO posts "
                 . "(id, user_id, content, created) "
                 . "VALUES (NULL, "
@@ -86,7 +122,20 @@
                 if ( ! $ok){
                     echo "Impossible d'ajouter le message: " . $mysqli->error;
                 } else {
-                    echo "Message posté en tant que :" . $userId;
+                    echo "Message posté en tant que :" . $userId;   
+                }
+                $requestPostIdInfos = "SELECT LAST_INSERT_ID() as postTagId";
+                $informationPostId = $mysqli->query($requestPostIdInfos);
+                $postIdInfos = $informationPostId->fetch_assoc();
+                $post_id = $postIdInfos['postTagId'];
+                $lInstructionSqlPostHashtag = "INSERT INTO posts_tags "
+                . "(id, post_id, tag_id) "
+                . "VALUES(NULL, " . $post_id . ", " . $tag_id . ")";
+                $okPostTag = $mysqli->query($lInstructionSqlPostHashtag);
+                if ( ! $okPostTag){
+                    echo "Impossible d'ajouter le tag: " . $mysqli->error;
+                } else {
+                    echo "tag posté en tant que :";
                 }
             }
             ?>
@@ -95,29 +144,71 @@
                         <input type='hidden' name='message' value='achanger'>
                         <dl>
                             <dt><label for='message'>Message</label></dt>
-                            <dd><textarea name='message'></textarea></dd>
+                            <dd># Location
+                                <br>
+                                <input type="text" name="cityHashtag"><br><br>
+                                <textarea name='message'></textarea>
+                            </dd>
                         </dl>
                         <input type='submit' value="Send">
                     </form>
                 </article>
             <?php
         }
+
+        // Création des likes
+        if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['like_post_id'])) {
+            $likeSqlRequest = "INSERT INTO likes"
+            . "(id, user_id, post_id)"
+            . "VALUES (NULL, " . $_SESSION['connected_id'] . ", " . $_POST['like_post_id'] . ")";
+            $ok = $mysqli->query($likeSqlRequest);
+            if ( ! $ok){
+                echo "Impossible d'aimer ce poste." . $mysqli->error;
+            } else {
+                header('Location: wall.php');
+            }
+            $post = $lesInformations->fetch_assoc();
+        }
             
-        while ($post = $lesInformations->fetch_assoc())
-        {
+        while ($post = $lesInformations->fetch_assoc()){
+            $likeSessionID = $_SESSION['connected_id'];
+            $postSessionID = $post['postID'];
+            $hasBeenLikedSql = "SELECT likes.id FROM likes WHERE user_id = $likeSessionID AND post_id = $postSessionID";
+            $informationsLikes = $mysqli->query($hasBeenLikedSql);
+            $likeInfos = $informationsLikes->fetch_assoc();
             // echo "<pre>" . print_r($post, 1) . "</pre>";
             ?>                
             <article>
                 <h3>
                     <time datetime='2020-02-01 11:12:13' > <?php echo $post['created'];?> </time>
                 </h3>
-                <address>par <a href="wall.php?user_id=<?php echo $post['user_id'] ?>"><?php echo $post['author_name'] ?></a></address>
+                <address>by <a href="wall.php?user_id=<?php echo $post['user_id'] ?>"><?php echo $post['author_name'] ?></a></address>
                 <div>
     
                     <p><?php echo $post['content'];?></p>
                 </div>                                            
                 <footer>
-                    <small>♥ <?php echo $post['like_number'];?></small>
+                    <small>
+                    <?php 
+                        if (isset($likeInfos) == false){
+                    ?>
+                        <form action="wall.php" method="post">
+                            <input type="hidden" name="like_post_id" value="<?php echo $post['postID']?>"/>
+                                <input type="submit" value="♥"/>
+                                    <?php 
+                                        echo $post['like_number'] ;
+                                        ?>
+                        </form>
+                                <?php
+                            } else {
+                                ?>
+                                    <div>
+                                        <?php echo $post['like_number'];?>♥
+                                    </div>
+                                <?php
+                            }
+                        ?>
+                    </small>
                     <?php 
                     $tag = $post['taglist'];
                     $arrayOfTags = explode(",",$tag);

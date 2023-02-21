@@ -6,9 +6,8 @@
     <aside>
         <img src = "user.jpg" alt = "Portrait de l'utilisatrice"/>
         <section>
-            <h3>Présentation</h3>
-            <p>Sur cette page vous trouverez la liste des personnes qui
-                suivent les messages de l'utilisatrice
+            <h3>Description</h3>
+            <p>  On this page you will find the list of people that are following this user's posts.
                 n° <?php echo intval($_SESSION['connected_id']) ?></p>
 
         </section>

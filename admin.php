@@ -14,7 +14,7 @@ if ($mysqli->connect_errno)
 ?>
 <div id="wrapper" class='admin'>
     <aside>
-        <h2>Mots-clés</h2>
+        <h2>Keywords</h2>
         <?php
         /*
             * Etape 2 : trouver tous les mots clés
@@ -46,7 +46,7 @@ if ($mysqli->connect_errno)
         <?php } ?>
     </aside>
     <main>
-        <h2>Utilisatrices</h2>
+        <h2>Users</h2>
         <?php
         /*
             * Etape 4 : trouver tous les mots clés

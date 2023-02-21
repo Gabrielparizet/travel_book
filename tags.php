@@ -2,7 +2,7 @@
     include 'header.php';
 ?>
 
-<title>Mots-clés</title> 
+<title>Keywords</title> 
 
 <div id="wrapper">
 <main>
@@ -22,9 +22,8 @@
         ?>
         <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
         <section>
-            <h3>Présentation</h3>
-            <p>Sur cette page vous trouverez les derniers messages comportant
-                le mot-clé <?php echo $tag['label']; ?>.
+            <h3>Description</h3>
+            <p>On this page you will find the lastest posts that takes in the keyword :  <?php echo $tag['label']; ?>.
             </p>
         </section>
     <!-- </aside> -->
