@@ -6,10 +6,10 @@
 
 <div id="wrapper">
     <?php
-    $userId = intval($_SESSION['connected_id']);
+        $userId = intval($_SESSION['connected_id']);
     ?>
-
     <main>
+    
         <?php
         /**
          * Etape 3: récupérer tous les messages des abonnements
@@ -102,3 +102,6 @@
         <?php } ?>
     </main>
 </div>
+<?php 
+    include 'footer.php';
+?>

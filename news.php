@@ -6,10 +6,12 @@
 
 <div id="wrapper">
     <main>
-        <div>
+        <div class="search">>
             <form class="citySearch" action="news.php" method="get">
                 <input type="text" name="locationSearchBar" placeholder="Search for a location">
-                <button type="submit"></button>
+                <button type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
             </form>
         </div>
         <?php
@@ -110,7 +112,7 @@
                 <div>
                     <p><?php echo $post['content']?></p>
                 </div>
-                <footer>
+          
                     <small>
                         <?php 
                             if (isset($likeInfos) == false){
@@ -140,11 +142,13 @@
                             echo '<a href="">' . "#" . $arrayOfTags[$index] . '</a>' . ' ';
                         }
                     ?>
-                </footer>
             </article>
             <?php
         }
         ?>
+        
     </main>
 </div>
-
+<?php 
+    include 'footer.php';
+?>

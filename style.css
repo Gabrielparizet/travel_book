@@ -1,95 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+*{
+    list-style: none;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
 body{
-    background-color: #003;
-    font-family: Arial;
+    background: #f5f6fa;
+    
 }
 
-a{text-decoration: none; color:black;}
-a:hover{text-decoration: underline;}
+/* SIDEBAR */
 
-body>header{
-    background-color: #fff;
-    display:flex;
-    width:80em;
-    margin:0 auto 2em auto;    
-    padding:0;
-
-}
-body>header img{
-    height:5em;
-}
-body>header #menu {
-    display:flex;
-    width:50%;
-    align-items: stretch;
-    border-left: 1px solid #99b;
-}
-body>header #menu a{
-    flex:1;
-    text-align: center;
-    padding-top:2em;
-    border-right: 1px solid #99b;
-}
-body>header a:hover
-{
-    background-color: #99b;
-}
-body>header ul{list-style: none;}
-body>header #user
-{
-    margin-left: auto;
-    flex:0.2;
-    border-left: 1px solid #99b;
-}
-body>header #user>a{
-    display:block;
-    text-align: center;
-    padding:2em 0;
-    width:100%;
-}
-body>header #user ul{ 
-    display: none;
+.menu .sidebar{
+    /* background: #F1FFC8;
     position: absolute;
-    padding:0;
-    margin:0;
-    margin-left:-5em;
-    background-color: #fff;
-    border: 1px solid #99b;
-
+    top: 0;
+    left: 0;
+    width: 225px;
+    height: 100%;
+    padding: 20px 0;
+    transition: all 0.5s ease;  */
+  
+    height: 100%;
+    width: 220px;
+    position: fixed;
     z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #F1FFC8;
+    overflow-x: hidden;
+    padding-top: 20px;
+       
 }
-body>header #user ul li a{
-    display:block;
-    width:10em;
-    padding:1em;
-    border-bottom: 1px solid #99b;
+
+.menu .sidebar .logo{
+    text-align: center;
+    padding: 13px 30px;
+    font-size: 30px;
+    font-weight: bolder;
 }
-body>header #user:hover ul{
-    display:block;
+
+
+/* .menu .sidebar a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+  } */
+
+/* MISE EN PAGE : MENU */
+
+.menu .sidebar ul li a{
+    display: block;
+    padding: 13px 30px;
+    /* border-bottom: 1px solid #10558d; */
+    color: #1F2021;
+    font-size: 16px;
+    position: relative;
+}
+
+.menu .sidebar ul li a .icon{
+    width: 30px;
+    display: inline-block;
+}
+
+/* CREATING HOVER */
+
+.menu .sidebar ul li a:hover,
+.menu .sidebar ul li a.active{
+    /* color: #0c7db1; */
+
+    background:#BAFE66;
+    /* border-right: 2px solid rgb(5, 68, 104); */
+}
+
+
+
+/* .wrapper .sidebar ul li a:hover .icon,
+.wrapper .sidebar ul li a.active .icon{
+    color: #0c7db1;
+}
+
+.wrapper .sidebar ul li a:hover:before,
+.wrapper .sidebar ul li a.active:before{
+    display: block;
+} */
+
+.menu .sidebar input{
+    width: 100%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: rgb(255, 0, 0);
+    outline: none;
 }
 
 
 #wrapper{
-    display:flex;    
-    width:80em;
-    margin:0 auto 2em auto;
+    display:block;    
+    width:100vh;
+    margin:0 auto 5em auto;
+    
 }
+
+
 #wrapper aside{
     background-color: #fff;
-    flex:1;
+    /* flex:2; */
     padding:1em;
     border-radius: 1em;    
 }
-#wrapper aside img{
+#wrapper img{
     display: block;
     width:50%;
     margin:auto;
 }
 
 #wrapper main{
-    flex:3;
+    /* flex:3; */
     padding-left:1em;
-    height: 80vh;
+    height: 100vh;
     overflow-y:  scroll;
+    margin-left: 120px ;
+    
 }
 #wrapper main article{
     background-color: #fff;
@@ -104,7 +144,7 @@ body>header #user:hover ul{
     font-size:1em;
 
 }
-#wrapper main article time{
+/* #wrapper main article time{
     float:left;
 }
 #wrapper main article address{
@@ -120,22 +160,22 @@ body>header #user:hover ul{
 }
 #wrapper main article footer small{
     float:left;
-}
+}  */
 
-#wrapper.admin{flex-direction: row-reverse}
-#wrapper.admin aside{flex:1;margin-left:1em;border-radius:0;padding:0;}
-#wrapper.admin main{flex:2;background-color: #fff;border-radius: 0;padding:0;}
-#wrapper.admin h2{text-align: center;}
-#wrapper.admin h3{margin:0;}
-#wrapper.admin nav{text-align: right;}
-#wrapper.admin article{border:1px solid #ddd;border-radius: 1em;padding:1em;margin:1em;}
-#wrapper.admin article p{float:left;margin:0;}
+                                /* #wrapper.admin{flex-direction: row-reverse}
+                                #wrapper.admin aside{flex:1;margin-left:1em;border-radius:0;padding:0;}
+                                #wrapper.admin main{flex:2;background-color: #fff;border-radius: 0;padding:0;}
+                                #wrapper.admin h2{text-align: center;}
+                                #wrapper.admin h3{margin:0;}
+                                #wrapper.admin nav{text-align: right;}
+                                #wrapper.admin article{border:1px solid #ddd;border-radius: 1em;padding:1em;margin:1em;}
+                                #wrapper.admin article p{float:left;margin:0;}
 
 
-.parameters dl dt{float:left;font-weight: bold;line-height: 1.5em;}
-.parameters dl dd{margin-left:15em;line-height: 1.5em;}
+                                .parameters dl dt{float:left;font-weight: bold;line-height: 1.5em;}
+                                .parameters dl dd{margin-left:15em;line-height: 1.5em;} */
 
-.contacts {
+/* .contacts {
     display:flex;
     flex-wrap: wrap;
     align-items:flex-start;
@@ -156,5 +196,99 @@ pre{
 }
 
 form dl dt{float:left;font-weight: bold;line-height: 1.5em;}
-form dl dd{margin-left:10em;line-height: 1.5em;margin-bottom: 1em;}
-form dl dd textarea{width:40em;height: 15em;}
+form dl dd{margin-left:10em;line-height: 1.5em;margin-bottom: 1em}
+form dl dd textarea{width:40em;height: 15em;} */
+/* 
+form dl dt{float:left;font-weight: bold;line-height: 1.5em;}
+form dl dd{margin-left:10em;line-height: 1.5em;margin-bottom: 1em}
+form dl dd textarea{width:40em;height: 15em;} */ 
+
+
+
+/* Search_bar */
+
+.search {
+    width: 80%;
+    left: 70px;
+    position: relative;
+    display: flex;
+    padding: 10px 5px;
+  }
+  
+  .searchTerm {
+    width: 100%;
+    border: 3px solid #000000;
+    border-right: none;
+    padding: 10px;
+    height: 50px;
+    border-radius: 100px 0 0 100px;
+    outline: none;
+    color: #9DBFAF;
+  }
+  
+  .searchTerm:focus{
+    color: #000000;
+  }
+  
+  .searchButton {
+    width: 40px;
+    height: 50px;
+    border: 1px solid #000000;
+    background: #000000;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 100px 100px 0;
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+#login {
+    /* display:block;
+    width:100%; */
+    position: absolute;
+    top: 30%;
+    left: 35%; 
+    transform: translate (-50%,-50%);
+    width: 400px;
+    border-radius: 30px;
+    background: #F1FFC8;
+}
+
+#login h1{
+    text-align: center;
+    padding: 0 0 20px 0;
+}
+
+#login h2{
+    text-align: center;
+    padding:20px 20px ;
+}
+
+#login form{
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+#form .txt_field{
+    position: relative;
+    border-bottom: 2px solid black;
+    border-radius: 30px;
+}
+
+/* .txt_field input{
+    width: 100%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: wheat;
+    outline: none;
+
+} */
+
+
+
+
+ 
+ 
+
