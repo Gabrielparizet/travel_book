@@ -29,7 +29,7 @@
         $lesInformations = $mysqli->query($laQuestionEnSql);
         if ( ! $lesInformations)
         {
-            echo("Échec de la requete : " . $mysqli->error);
+            echo("Request failed : " . $mysqli->error);
         }
         $user = $lesInformations->fetch_assoc();
 

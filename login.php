@@ -26,7 +26,7 @@
                 $emailAVerifier = $_POST['email'];
                 $passwdAVerifier = $_POST['motpasse'];
                 if (empty($_POST['email']) || empty($_POST['motpasse'])){
-                    echo 'Veuillez entrer une adresse email et un mot de passe valide.';
+                    echo 'Please enter a valid email and password.';
                 } else {
 
                 //Etape 4 : Petite sécurité
@@ -47,11 +47,11 @@
                 $user = $res->fetch_assoc();
                 if ( ! $user OR $user["password"] != $passwdAVerifier)
                 {
-                    echo "La connexion a échouée. ";
+                    echo "Connexion failed. ";
                     
                 } else
                 {
-                    echo "Votre connexion est un succès : " . $user['alias'] . ".";
+                    echo "Your connexion succeed : " . $user['alias'] . ".";
                     // Etape 7 : Se souvenir que l'utilisateur s'est connecté pour la suite
                     // documentation: https://www.php.net/manual/fr/session.examples.basic.php
                     $_SESSION['connected_id']=$user['id'];

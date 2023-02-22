@@ -4,7 +4,7 @@
 
 <div id="wrapper">          
     <aside>
-        <img src = "user.jpg" alt = "Portrait de l'utilisatrice"/>
+        <img src = "user.jpg" alt = "User profile"/>
         <section>
             <h3>Description</h3>
             <p>  On this page you will find the list of people that are following this user's posts.

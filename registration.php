@@ -27,7 +27,7 @@
                 $new_alias = $_POST['pseudo'];
                 $new_passwd = $_POST['motpasse'];
                 if (empty($_POST['email']) || empty($_POST['pseudo']) || empty($_POST['motpasse'])){
-                    echo 'Veuillez entrer un pseudo, une adresse email et un mot de passe valide.';
+                    echo 'Please enter a valid nickame, email and password.';
                 } else {
 
                 //Etape 4 : Petite sécurité
@@ -49,10 +49,10 @@
                 $ok = $mysqli->query($lInstructionSql);
                 if ( ! $ok)
                 {
-                    echo "L'inscription a échouée : " . $mysqli->error;
+                    echo "Your registration failed : " . $mysqli->error;
                 } else
                 {
-                    echo "Votre inscription est un succès : " . $new_alias;
+                    echo "Your registration succeed : " . $new_alias;
                     echo " <a href='login.php'>Connectez-vous.</a>";
                 }
             }}

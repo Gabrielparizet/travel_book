@@ -18,8 +18,8 @@
         // Gestion d'erreurs
         if ($mysqli->connect_errno){
             echo "<article>";
-            echo("Échec de la connexion : " . $mysqli->connect_error);
-            echo("<p>Indice: Vérifiez les parametres de <code>new mysqli(...</code></p>");
+            echo("Connexion failed : " . $mysqli->connect_error);
+            echo("<p>Indice: Check parameters of <code>new mysqli(...</code></p>");
             echo "</article>";
             exit();
         }
@@ -47,7 +47,7 @@
             // Vérification
             if ( ! $lesInformations){
                 echo "<article>";
-                echo("Échec de la requete : " . $mysqli->error);
+                echo("Request failed : " . $mysqli->error);
                 echo("<p>Indice: Vérifiez la requete  SQL suivante dans phpmyadmin<code>$laQuestionEnSql</code></p>");
                 exit();
             }
@@ -74,7 +74,7 @@
             // Vérification
             if ( ! $lesInformations){
                 echo "<article>";
-                echo("Échec de la requete : " . $mysqli->error);
+                echo("Request failed : " . $mysqli->error);
                 echo("<p>Indice: Vérifiez la requete  SQL suivante dans phpmyadmin<code>$laQuestionEnSql</code></p>");
                 exit();
             }
@@ -88,7 +88,7 @@
                 . "VALUES (NULL, " . $_SESSION['connected_id'] . ", " . $_POST['like_post_id'] . ")";
                 $ok = $mysqli->query($likeSqlRequest);
                 if ( ! $ok){
-                    echo "Impossible d'aimer ce poste." . $mysqli->error;
+                    echo "You can't like this post." . $mysqli->error;
                 } else {
                 }
                 header('Location: news.php');
