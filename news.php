@@ -6,7 +6,7 @@
 
 <div id="wrapper">
     <main>
-        <div class="wrap">>
+        <div class="search">>
             <form class="citySearch" action="news.php" method="get">
                 <input type="text" name="locationSearchBar" placeholder="Search for a location">
                 <button type="submit">
@@ -149,4 +149,6 @@
         
     </main>
 </div>
-
+<?php 
+    include 'footer.php';
+?>

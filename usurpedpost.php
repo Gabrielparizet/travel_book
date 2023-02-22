@@ -4,6 +4,7 @@
 <div id="wrapper" >
 
     <aside>
+        <h1>TravelBook</h1>
         <h2>Description</h2>
         <p>On this page you can post a message pretending you are someone else</p>
     </aside>

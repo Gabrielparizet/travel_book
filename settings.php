@@ -4,15 +4,11 @@
 
 <title>Settings</title> 
 <div id="wrapper" class='profile'>
-    <aside>
-        <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
-        <section>
-            <h3>Description</h3>
-            <p>On this page you will find the informations about user number :  <?php echo intval($_SESSION['connected_id']) ?></p>
-
-        </section>
-    </aside>
     <main>
+        <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
+    
+        <h3>Description</h3>
+        <p>On this page you will find the informations about user number :  <?php echo intval($_SESSION['connected_id']) ?></p>
         <?php
         $userId = intval($_SESSION['connected_id']);
         /**
@@ -42,15 +38,15 @@
         <article class='parameters'>
             <h3>My settings</h3>
             <dl>
-                <dt>Nickname</dt>
+                <dt>Nickname :</dt>
                 <dd><?php echo $user['alias']?></dd>
-                <dt>Email</dt>
+                <dt>Email : </dt>
                 <dd><?php echo $user['email']?></dd>
-                <dt>Number of posts</dt>
+                <dt>Number of posts : </dt>
                 <dd><?php echo $user['totalpost']?></dd>
-                <dt>Number of likes given </dt>
+                <dt>Number of likes given : </dt>
                 <dd><?php echo $user['totalgiven']?></dd>
-                <dt>Number of likes received</dt>
+                <dt>Number of likes received :</dt>
                 <dd><?php echo $user['totalrecieved']?></dd>
             </dl>
 

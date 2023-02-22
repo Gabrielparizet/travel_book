@@ -24,18 +24,13 @@
                  <!--Top menu -->
             <?php if (isset($_SESSION['connected_id'])) { ?>
              <div class="sidebar">
+                <div class="logo">TravelBook</div>
                 <!--menu item-->
                 <ul>
                     <li>
                         <a href="news.php">
                             <span class = "icon"><i class="fas fa-home"></i></span>
-                            <span class = "item">Home</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="wall.php">
-                            <span class = "icon"><i class="fas fa-desktop"></i></span>
-                            <span class = "item">Wall</span>
+                            <span class = "item">News</span>
                         </a>
                     </li>
                     <li>
@@ -44,26 +39,37 @@
                             <span class = "item">Feed</span>
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="tags.php?tag_id=1">
                             <span class = "icon"><i class="fas fa-database"></i></span>
                             <span class = "item">Tags</span>
                         </a>
-                    
-                    </li>
+                    </li>      -->
             <?php } ?>
                     <nav id="user">
                         <?php if (isset($_SESSION['connected_id'])) { ?>
-                            <a href="#">▾ Profile</a>
-                            <ul>
-                                <li><a href='settings.php'>Settings</a></li>
-                                <li><a href='wall.php'>My Wall</a></li>
+                            <!-- <a href="#">▾ Profile</a> -->
+                            <!-- <ul> -->
                                 <li>
-                                    <form method='post'>
-                                        <input type='submit' name='logout' value='Se déconnecter'></input>
-                                    </form>
+                                    <a href='wall.php'>
+                                        <span class = "icon"><i class="fas fa-user-friends"></i></span>
+                                        <span class = "item">Profile</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href='settings.php'>
+                                        <span class = "icon"><i class="fas fa-cog"></i></span>
+                                        <span class = "item">Settings</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <div class="logout">
+                                        <form method='post'>
+                                            <input type='submit' name='logout' value='Se déconnecter'></input>
+                                        </form>
+                                    </div>
                                 </li> 
-                            </ul>
+                            <!-- </ul> -->
                         <?php } ?>
                     </nav>
                 </ul> 

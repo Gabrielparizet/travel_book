@@ -1,15 +1,14 @@
 <?php
     include "header.php";
-?>
-
-<div id="wrapper" >
-    <aside>
-        <h2>Description</h2>
-        <p>Welcome on our social network</p>
-    </aside>
+?> 
+            <!-- <p>Welcome on our social network</p> -->
+        <!-- </aside> -->
     <main>
-        <article>
-            <h2>Connexion</h2>
+        <div id="login" >
+            <!-- <aside> -->
+                <h2>Welcome on our social network</h2>
+                <h1>TravelBook</h1>
+            <!-- <article> -->
             <?php
             /**
              * TRAITEMENT DU FORMULAIRE
@@ -60,7 +59,8 @@
                 }
             }
         }
-            ?>                     
+            ?> 
+            <div class=txt_field>                    
             <form action="login.php" method="post">
                 <input type='hidden'name='???' value='achanger'>
                 <dl>
@@ -69,14 +69,20 @@
                     <dt><label for='motpasse'>Password</label></dt>
                     <dd><input type='password'name='motpasse'></dd>
                 </dl>
-                <input type='submit'>
+                <div class=button>
+                    <input type='submit'>
+                </div>
             </form>
+        </div>
             <p>
                 No account yet ?
                 <a href='registration.php'>Sign in.</a>
             </p>
 
-        </article>
+        <!-- </article> -->
+        </div>
     </main>
-</div>
 
+<?php
+    include "footer.php";
+?>
