@@ -35,7 +35,7 @@
         $lesInformations = $mysqli->query($laQuestionEnSql);
         if ( ! $lesInformations)
         {
-            echo("Échec de la requete : " . $mysqli->error);
+            echo("Request failed : " . $mysqli->error);
         }
 
             // Création des likes
@@ -45,7 +45,7 @@
                 . "VALUES (NULL, " . $_SESSION['connected_id'] . ", " . $_POST['like_post_id'] . ")";
                 $ok = $mysqli->query($likeSqlRequest);
                 if ( ! $ok){
-                    echo "Impossible d'aimer ce poste." . $mysqli->error;
+                    echo "You can't like this post." . $mysqli->error;
                 } else {
                 }
                 header('Location: feed.php');

@@ -40,7 +40,7 @@
                 $authorId = $_POST['auteur'];
                 $postContent = $_POST['message'];
                 if (empty($_POST['message'])){
-                    echo "Veuillez entrer un message.";
+                    echo "Please enter a message.";
                 } else {
 
 
@@ -61,10 +61,10 @@
                 $ok = $mysqli->query($lInstructionSql);
                 if ( ! $ok)
                 {
-                    echo "Impossible d'ajouter le message: " . $mysqli->error;
+                    echo "Failed to add the message: " . $mysqli->error;
                 } else
                 {
-                    echo "Message posté en tant que :" . $listAuteurs[$authorId];
+                    echo "Message posted by :" . $listAuteurs[$authorId];
                 }
                 }   
             }

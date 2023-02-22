@@ -34,9 +34,9 @@
                         . $followingId . ")";
                         $ok = $mysqli->query($followersSql);
                         if ( ! $ok){
-                            echo "Impossible de suivre cet utilisateur." . $mysqli->error;
+                            echo "You can't follow this user." . $mysqli->error;
                         } else {
-                            echo "Vous suivez maintenant cet utilisateur.";
+                            echo "You are now following this user.";
                         }
                     }
             ?>  
@@ -53,7 +53,7 @@
                 $infos = $mysqli->query($followedSql);
                 if ( ! $infos)
                 {
-                    echo("Échec de la requete : " . $mysqli->error . $followedSql);
+                    echo("Request failed : " . $mysqli->error . $followedSql);
                 }
                 $numberOfFollowedUsers = $infos->fetch_assoc()['totalfollowed'];
 
@@ -63,7 +63,7 @@
                 $infos = $mysqli->query($followingSql);
                 if ( ! $infos)
                 {
-                    echo("Échec de la requete : " . $mysqli->error . $followingSql);
+                    echo("Request failed : " . $mysqli->error . $followingSql);
                 }
                 $numberOfFollowingUsers = $infos->fetch_assoc()['totalfollowing'];
              ?>
@@ -88,12 +88,12 @@
         $lesInformations = $mysqli->query($laQuestionEnSql);
         if ( ! $lesInformations)
         {
-            echo("Échec de la requete : " . $mysqli->error);
+            echo("Request failed : " . $mysqli->error);
         }
         if (isset($_GET['user_id'])){
         } else {
             if (empty($_POST['message'])){
-                echo "Impossible d'ajouter le message sans contenu.";
+                echo "You can't add an empty message.";
             } else {
                 $cityHashTagContent = $_POST['cityHashtag'];
                 $cityHashTagContent = $mysqli->real_escape_string($cityHashTagContent);
@@ -118,9 +118,9 @@
                     . "NOW())";
                     $ok = $mysqli->query($lInstructionSql);
                     if ( ! $ok){
-                        echo "Impossible d'ajouter le message: " . $mysqli->error;
+                        echo "You can't add the message : " . $mysqli->error;
                     } else {
-                        echo "Message posté en tant que :" . $userId;   
+                        echo "Message posted by :" . $userId;   
                     }
                     $requestPostIdInfos = "SELECT LAST_INSERT_ID() as postTagId";
                     $informationPostId = $mysqli->query($requestPostIdInfos);
@@ -131,9 +131,9 @@
                     . "VALUES(NULL, " . $post_id . ", " . $tag_id . ")";
                     $okPostTag = $mysqli->query($lInstructionSqlPostHashtag);
                     if ( ! $okPostTag){
-                        echo "Impossible d'ajouter le tag: " . $mysqli->error;
+                        echo "You can't add the tag: " . $mysqli->error;
                     } else {
-                        echo "tag posté en tant que :";
+                        echo "Tag posted by :";
                     }
                 } else {
                     $lInstructionSqlHashtag = "INSERT INTO tags "
@@ -141,9 +141,9 @@
                     . "VALUES (NULL, '" . $cityHashTagContent . "')";
                     $okHashTag = $mysqli->query($lInstructionSqlHashtag);
                     if ( ! $okHashTag){
-                        echo "Impossible d'ajouter le hashtag: " . $mysqli->error;
+                        echo "You can't add the htag: " . $mysqli->error;
                     } else {
-                        echo "Hashtag posté en tant que :";
+                        echo "Htag posted by :";
                     }
                     $requestTagIdInfos = "SELECT LAST_INSERT_ID() as tagPostId";
                     $informationTagId = $mysqli->query($requestTagIdInfos);
@@ -159,9 +159,9 @@
                     . "NOW())";
                     $ok = $mysqli->query($lInstructionSql);
                     if ( ! $ok){
-                        echo "Impossible d'ajouter le message: " . $mysqli->error;
+                        echo "You can't add the message: " . $mysqli->error;
                     } else {
-                        echo "Message posté en tant que :" . $userId;   
+                        echo "Message posted by :" . $userId;   
                     }
                     $requestPostIdInfos = "SELECT LAST_INSERT_ID() as postTagId";
                     $informationPostId = $mysqli->query($requestPostIdInfos);
@@ -172,9 +172,9 @@
                     . "VALUES(NULL, " . $post_id . ", " . $tag_id . ")";
                     $okPostTag = $mysqli->query($lInstructionSqlPostHashtag);
                     if ( ! $okPostTag){
-                        echo "Impossible d'ajouter le tag: " . $mysqli->error;
+                        echo "You can't add the tag: " . $mysqli->error;
                     } else {
-                        echo "tag posté en tant que :";
+                        echo "Tag posted by :";
                     }
                 }
             }
@@ -203,9 +203,9 @@
             . "VALUES (NULL, " . $_SESSION['connected_id'] . ", " . $_POST['like_post_id'] . ")";
             $ok = $mysqli->query($likeSqlRequest);
             if ( ! $ok){
-                echo "Impossible d'aimer ce poste." . $mysqli->error;
+                echo "You can't like this post." . $mysqli->error;
             } else {
-                header('Location: wall.php');
+                header("Location: wall.php");
             }
             $post = $lesInformations->fetch_assoc();
         }

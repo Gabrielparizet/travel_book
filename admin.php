@@ -8,7 +8,7 @@
 //verification
 if ($mysqli->connect_errno)
 {
-    echo("Échec de la connexion : " . $mysqli->connect_error);
+    echo("Failed to connect : " . $mysqli->connect_error);
     exit();
 }
 ?>
@@ -24,7 +24,7 @@ if ($mysqli->connect_errno)
         // Vérification
         if ( ! $lesInformations)
         {
-            echo("Échec de la requete : " . $mysqli->error);
+            echo("Request failed : " . $mysqli->error);
             exit();
         }
 
@@ -57,7 +57,7 @@ if ($mysqli->connect_errno)
         // Vérification
         if ( ! $lesInformations)
         {
-            echo("Échec de la requete : " . $mysqli->error);
+            echo("Request failed : " . $mysqli->error);
             exit();
         }
 
