@@ -20,10 +20,10 @@
             <!-- <a href='admin.php'><img src="resoc.jpg" alt="Logo de notre réseau social"/></a> -->
             <!-- <nav id="menu"> -->
 
-        <div class="menu">
+        <!-- <div class="menu"> -->
                  <!--Top menu -->
             <?php if (isset($_SESSION['connected_id'])) { ?>
-             <div class="sidebar">
+             <header class="sidebar">
                 <div class="logo">TravelBook</div>
                 <!--menu item-->
                 <ul>
@@ -74,7 +74,7 @@
                     </nav>
                 </ul> 
             </div>
-        </div>
+        </header>
     
         <!-- Connexion à la base de donnée -->
         <?php                

@@ -3,8 +3,6 @@
 ?>
 
 <title>News</title> 
-
-<div id="wrapper">
     <main>
         <div class="search">>
             <form class="citySearch" action="news.php" method="get">
@@ -14,6 +12,8 @@
                 </button>
             </form>
         </div>
+        
+    <div class="news">
         <?php
         // Gestion d'erreurs
         if ($mysqli->connect_errno){
@@ -104,14 +104,23 @@
             $likeInfos = $informationsLikes->fetch_assoc();
             // var_dump($_SESSION['connected_id'], $postSessionID);
             ?>
-            <article>
-                <h3>
+            <!-- <article> -->
+                <!-- <h3>
                     <time><?php echo $post['created'] ?></time>
                 </h3>
                 <address><a href="wall.php?user_id=<?php echo $post['user_id'] ?>"><?php echo $post['author_name'] ?></a></address>
-                <div>
-                    <p><?php echo $post['content']?></p>
-                </div>
+                <div> -->
+                    <!-- <p> -->
+                    <h1 class="main-title">Post</h1>
+                        <article>
+                            <div>
+                                <h2>Hello</h2>
+                                <p><?php echo $post['content']?></p>
+                            </div>
+                        </article> 
+
+                    <!-- </p> -->
+                <!-- </div> -->
           
                     <small>
                         <?php 
