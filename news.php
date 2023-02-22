@@ -4,16 +4,16 @@
 
 <title>News</title> 
 
-<div id="wrapper">
+<div id="news">
     <main>
-        <div class="search">>
+        <div class="search">
             <form class="citySearch" action="news.php" method="get">
-                <input type="text" name="locationSearchBar" placeholder="Search for a location">
+                <input type="text" name="locationSearchBar" placeholder="Search for a location" class="searchButton">
                 <button type="submit">
                     <i class="fa fa-search"></i>
                 </button>
             </form>
-        </div>
+        <!-- </div> -->
         <?php
         // Gestion d'erreurs
         if ($mysqli->connect_errno){
@@ -137,6 +137,7 @@
                             }
                         ?>
                     </small>
+                <div id="hastag">
                     <?php 
                         $tag = $post['taglist'];
                         $arrayOfTags = explode(",",$tag);

@@ -72,14 +72,17 @@
                 </div>                                            
                 <footer>
                     <small>♥ <?php echo $post['like_number'] ?></small>
+                <div id="hastag">
                     <?php 
                         $tag = $post['taglist'];
                         $arrayOfTags = explode(",",$tag);
                         $index = 0;
                         for ($index = 0; $index < count($arrayOfTags); $index++) {
+                            
                             echo '<a href="">' . "#" . $arrayOfTags[$index] . '</a>' . ' ';
                         }
                         ?>
+                </div>
                 </footer>
             </article>
         <?php } ?>

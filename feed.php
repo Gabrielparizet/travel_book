@@ -91,6 +91,7 @@
                         }
                     ?>
                 </small>
+            <div id="hastag">
                 <?php 
                         $tag = $post['taglist'];
                         $arrayOfTags = explode(",",$tag);
@@ -99,6 +100,7 @@
                             echo '<a href="">' . "#" . $arrayOfTags[$index] . '</a>' . ' ';
                         }
                         ?>
+            </div>
             </footer>
         </article>
         <?php } ?>
