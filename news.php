@@ -30,6 +30,7 @@
             SELECT posts.content,
             posts.created,
             posts.id as postID,
+            posts.picture_name as picture_name,
             users.alias as author_name, 
             users.id as user_id, 
             count(likes.id) as like_number,  
@@ -57,6 +58,7 @@
                 SELECT posts.content,
                 posts.created,
                 posts.id as postID,
+                posts.picture_name as picture_name,
                 users.alias as author_name, 
                 users.id as user_id, 
                 count(likes.id) as like_number,  
@@ -111,6 +113,7 @@
                 <address><a href="wall.php?user_id=<?php echo $post['user_id'] ?>"><?php echo $post['author_name'] ?></a></address>
                 <div>
                     <p><?php echo $post['content']?></p>
+                    <img src="./upload/<?php echo $post['picture_name']; ?>">
                 </div>
           
                     <small>
