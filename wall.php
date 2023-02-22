@@ -74,7 +74,7 @@
     <!-- <main> -->
         <?php
         $laQuestionEnSql = "
-            SELECT posts.content, posts.created, posts.id as postID, users.alias as author_name, users.id as user_id, 
+            SELECT posts.content, posts.created, posts.id as postID, posts.picture_name as picture_name, users.alias as author_name, users.id as user_id, 
             COUNT(likes.id) as like_number, GROUP_CONCAT(DISTINCT tags.label) AS taglist 
             FROM posts
             JOIN users ON  users.id=posts.user_id
@@ -95,6 +95,29 @@
             if (empty($_POST['message'])){
                 echo "Impossible d'ajouter le message sans contenu.";
             } else {
+                // Add picture to post
+                $tmpName = $_FILES['file']['tmp_name'];
+                $name = $_FILES['file']['name'];
+                $size = $_FILES['file']['size'];
+                $error = $_FILES['file']['error'];
+                $type = $_FILES['file']['type'];
+
+                // Check picture extension and size
+                $tabExtension = explode('.', $name);
+                $extension = strtolower(end($tabExtension));
+
+                $authorizedExtension = ['jpg', 'jpeg', 'gif', 'png'];
+                $maxSize = 40000000;
+
+                if (in_array($extension, $authorizedExtension) && $size <= $maxSize && $error == 0){
+
+                    $uniqueName = uniqid('', true);
+                    $fileName = $uniqueName.'.'.$extension;
+
+                    move_uploaded_file($tmpName, './upload/'.$fileName);
+                } else {
+                    'Wrong extension or max size exceeded.';
+                }
                 $cityHashTagContent = $_POST['cityHashtag'];
                 $cityHashTagContent = $mysqli->real_escape_string($cityHashTagContent);
                 $lInstructionSqlHashtag = "SELECT id as location_id, label as location_label FROM tags WHERE label = '" . $cityHashTagContent . "'";
@@ -152,11 +175,11 @@
                     $postContent = $_POST['message'];
                     $postContent = $mysqli->real_escape_string($postContent);
                     $lInstructionSql = "INSERT INTO posts "
-                    . "(id, user_id, content, created) "
+                    . "(id, user_id, content, created, picture_name) "
                     . "VALUES (NULL, "
                     . $userId . ", "
                     . "'" . $postContent . "', "
-                    . "NOW())";
+                    . "NOW(), '" . $fileName  . "')";
                     $ok = $mysqli->query($lInstructionSql);
                     if ( ! $ok){
                         echo "Impossible d'ajouter le message: " . $mysqli->error;
@@ -180,13 +203,15 @@
             }
             ?>
                 <article>
-                    <form action="wall.php" method="post">
+                    <form action="wall.php" method="post" enctype="multipart/form-data">
                         <input type='hidden' name='message' value='achanger'>
                         <dl>
                             <dt><label for='message'>Message</label></dt>
                             <dd># Location
                                 <br>
-                                <input type="text" name="cityHashtag"><br><br>
+                                <input type="text" name="cityHashtag"><br>
+                                <label for="file">Picture</label>
+                                <input type="file" name="file"><br>
                                 <textarea name='message'></textarea>
                             </dd>
                         </dl>
@@ -226,6 +251,7 @@
                 <div>
     
                     <p><?php echo $post['content'];?></p>
+                    <img src="./upload/<?php echo $post['picture_name']; ?>">
                 </div>                                            
                 <footer>
                     <small>
