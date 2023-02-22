@@ -118,6 +118,7 @@
                 } else {
                     'Wrong extension or max size exceeded.';
                 }
+                var_dump($fileName);
                 $cityHashTagContent = $_POST['cityHashtag'];
                 $cityHashTagContent = $mysqli->real_escape_string($cityHashTagContent);
                 $lInstructionSqlHashtag = "SELECT id as location_id, label as location_label FROM tags WHERE label = '" . $cityHashTagContent . "'";
@@ -134,11 +135,11 @@
                     $postContent = $_POST['message'];
                     $postContent = $mysqli->real_escape_string($postContent);
                     $lInstructionSql = "INSERT INTO posts "
-                    . "(id, user_id, content, created) "
+                    . "(id, user_id, content, created, picture_name)"
                     . "VALUES (NULL, "
                     . $userId . ", "
                     . "'" . $postContent . "', "
-                    . "NOW())";
+                    . "NOW(), '" . $fileName  . "')";
                     $ok = $mysqli->query($lInstructionSql);
                     if ( ! $ok){
                         echo "You can't add the message : " . $mysqli->error;
