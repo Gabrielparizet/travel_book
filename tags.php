@@ -63,23 +63,26 @@
             // echo "<pre>" . print_r($post, 1) . "</pre>";
             ?>                
             <article>
-                <h3>
+                <p>
                     <time datetime='2020-02-01 11:12:13' ><?php echo $post['created'] ?></time>
-                </h3>
+        </p>
                 <address><a href="wall.php?user_id=<?php echo $post['user_id'] ?>"><?php echo $post['author_name'] ?></a></address>
                 <div>
                     <p><?php echo $post['content'] ?></p>
                 </div>                                            
                 <footer>
                     <small>♥ <?php echo $post['like_number'] ?></small>
+                <div id="hastag">
                     <?php 
                         $tag = $post['taglist'];
                         $arrayOfTags = explode(",",$tag);
                         $index = 0;
                         for ($index = 0; $index < count($arrayOfTags); $index++) {
+                            
                             echo '<a href="">' . "#" . $arrayOfTags[$index] . '</a>' . ' ';
                         }
                         ?>
+                </div>
                 </footer>
             </article>
         <?php } ?>

@@ -7,8 +7,8 @@
     <main>
         <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
     
-        <h3>Description</h3>
-        <p>On this page you will find the informations about user number :  <?php echo intval($_SESSION['connected_id']) ?></p>
+        <h3>Settings :</h3>
+        <p><?php intval($_SESSION['connected_id']) ?></p>
         <?php
         $userId = intval($_SESSION['connected_id']);
         /**
@@ -36,20 +36,11 @@
         // echo "<pre>" . print_r($user, 1) . "</pre>";
         ?>                
         <article class='parameters'>
-            <h3>My settings</h3>
-            <dl>
-                <dt>Nickname :</dt>
-                <dd><?php echo $user['alias']?></dd>
-                <dt>Email : </dt>
-                <dd><?php echo $user['email']?></dd>
-                <dt>Number of posts : </dt>
-                <dd><?php echo $user['totalpost']?></dd>
-                <dt>Number of likes given : </dt>
-                <dd><?php echo $user['totalgiven']?></dd>
-                <dt>Number of likes received :</dt>
-                <dd><?php echo $user['totalrecieved']?></dd>
-            </dl>
-
+            <dl> Nickname : <?php echo $user['alias']?></dl>
+            <dl> Email : <?php echo $user['email']?></dl>
+            <dl> Number of posts : <?php echo $user['totalpost']?></dl>
+            <dl> Number of likes given : <?php echo $user['totalgiven']?></dl>
+            <dl> Number of likes received : <?php echo $user['totalrecieved']?></dl>
         </article>
     </main>
 </div>

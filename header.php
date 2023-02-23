@@ -19,8 +19,6 @@
         <!-- <header> -->
             <!-- <a href='admin.php'><img src="resoc.jpg" alt="Logo de notre réseau social"/></a> -->
             <!-- <nav id="menu"> -->
-
-        <div class="menu">
                  <!--Top menu -->
             <?php if (isset($_SESSION['connected_id'])) { ?>
              <div class="sidebar">

@@ -16,7 +16,7 @@ body{
 
 /* SIDEBAR */
 
-.menu .sidebar{
+.sidebar{
     /* background: #F1FFC8;
     position: absolute;
     top: 0;
@@ -38,7 +38,7 @@ body{
        
 }
 
-.menu .sidebar .logo{
+.sidebar .logo{
     text-align: center;
     padding: 13px 30px;
     font-size: 30px;
@@ -56,7 +56,7 @@ body{
 
 /* MISE EN PAGE : MENU */
 
-.menu .sidebar ul li a{
+.sidebar ul li a{
     display: block;
     padding: 13px 30px;
     /* border-bottom: 1px solid #10558d; */
@@ -65,15 +65,14 @@ body{
     position: relative;
 }
 
-.menu .sidebar ul li a .icon{
+.sidebar ul li a .icon{
     width: 30px;
     display: inline-block;
 }
 
 /* CREATING HOVER */
-
-.menu .sidebar ul li a:hover,
-.menu .sidebar ul li a.active{
+.sidebar ul li a:hover,
+.sidebar ul li a.active{
     /* color: #0c7db1; */
 
     background:#BAFE66;
@@ -92,7 +91,7 @@ body{
     display: block;
 } */
 
-.menu .sidebar input{
+.sidebar input{
     width: 100%;
     padding: 0 5px;
     height: 40px;
@@ -102,12 +101,272 @@ body{
     outline: none;
 }
 
+#news{
+    display:block;    
+    width:130vh;
+    margin:0 auto 5em auto;
+    
+}
+
+#news #hastag {
+    display: inline-block;
+    background: #BAFE66;
+    color: #000000;
+    padding: 5px 10px;
+    border-radius: 50px;
+}
+
+#news main article{
+    background-color: #fff;
+    padding:1em;
+    margin-bottom: 1em ;
+    border-radius: 1em;
+}
+
+#news .search {
+    width: 80%;
+    left: 90px;
+    position: relative;
+    /* display: flex; */
+    padding: 10px 5px;
+  }
+
+#news .search .citySearch input[type=text]{
+    background-color: rgb(255, 255, 255);
+    border-style: 1px black;
+    color: rgb(0, 0, 0);
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 50px;
+    
+  }
+
+#news main form button{
+    background-color: black;
+    border-style: 1px black;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 50px;
+    font-size: 20px;
+  }
+
+#news main form input[type=submit]{
+    background-color: rgb(212, 45, 45);
+    border-style: none;
+    color: white;
+    padding: 4px 10px;
+    text-decoration: none;
+    /* margin: 4px 2px; */
+    cursor: pointer;
+    border-radius: 100px;
+    font-size: 20px;
+  }
+
+
+  #news main form input[type=hidden]{
+    background-color: rgb(212, 45, 45);
+    border-style: none;
+    color: white;
+    padding: 4px 10px;
+    text-decoration: none;
+    /* margin: 4px 2px; */
+    cursor: pointer;
+    border-radius: 100px;
+    font-size: 20px;
+  }
+
+
+#wall{
+    display:block;    
+    width:130vh;
+    margin:0 auto 5em auto;
+    
+}
+#wall main{
+    /* flex:3; */
+    padding-left:1em;
+    height: 100vh;
+    overflow-y:  scroll;
+    margin-left: 120px ;
+}
+    
+#wall section{
+    display: block;
+    width:10%;
+    margin:auto;
+    /* padding: 8px 16px; */
+    /* text-decoration: none; */
+    /* margin: 4px 2px; */
+    font-size: 16px;
+    font-weight: bolder;
+  }
+
+/* #wall .post {
+    display: inline-block;
+    background: #BAFE66;
+    color: #000000;
+    padding: 5px 10px;
+    border-radius: 50px;
+} */
+
+#wall main article input[type=submit]{
+    background-color: #BAFE66;
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 8px 16px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: bolder;
+  }
+
+
+#wall form input[type=submit]{
+    background-color: #BAFE66;
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 8px 16px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: bolder;
+  }
+
+
+
+#wall main article{
+    background-color: #fff;
+    padding:1em;
+    margin-bottom: 1em ;
+    border-radius: 1em;
+}
+
+#wall aside{
+    background-color: #fff;
+    /* flex:2; */
+    padding:1em;
+    border-radius: 1em;    
+}
+#wall img{
+    display: block;
+    width:50%;
+    margin:auto;
+}
+
+#wall #hastag {
+    display: inline-block;
+    background: #BAFE66;
+    color: #000000;
+    padding: 5px 10px;
+    border-radius: 50px;
+}
+
+
+
+#news img{
+    display: block;
+    width:50%;
+    margin:auto;
+}
+
+
+
+
+#login {
+    /* display:block;
+    width:100%; */
+    position: absolute;
+    top: 30%;
+    left: 35%; 
+    transform: translate (-50%,-50%);
+    width: 400px;
+    border-radius: 30px;
+    background: #F1FFC8;
+}
+
+#login h1{
+    text-align: center;
+    padding: 0 0 20px 0;
+}
+
+#login h2{
+    text-align: center;
+    padding:20px 20px ;
+}
+
+#login form{
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+#form .txt_field{
+    position: relative;
+    border-bottom: 2px solid black;
+    border-radius: 30px;
+}
+
+
+
+form dl dt{
+    float:left;
+    font-weight: bold;
+    line-height: 1.5em;
+}
+
+form dl dd{
+    margin-left:10em;
+    line-height: 1.5em;
+    margin-bottom: 1em
+}
+
+form dl dd .hastag-location{
+    background-color: #BAFE66;
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 8px 16px;
+    text-decoration: none;
+    /* margin: 4px 2px; */
+    cursor: pointer;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: bolder;
+    width:110px;
+}
+
+form dl dd textarea{
+    width:40em;
+    height: 15em;
+}
+
+
+
+
+
+
+
 
 #wrapper{
     display:block;    
-    width:100vh;
+    width:130vh;
     margin:0 auto 5em auto;
     
+}
+
+#wrapper #hastag {
+    display: inline-block;
+    background: #BAFE66;
+    color: #000000;
+    padding: 5px 10px;
+    border-radius: 50px;
 }
 
 
@@ -207,73 +466,7 @@ form dl dd textarea{width:40em;height: 15em;} */
 
 /* Search_bar */
 
-.search {
-    width: 80%;
-    left: 70px;
-    position: relative;
-    display: flex;
-    padding: 10px 5px;
-  }
-  
-  .searchTerm {
-    width: 100%;
-    border: 3px solid #000000;
-    border-right: none;
-    padding: 10px;
-    height: 50px;
-    border-radius: 100px 0 0 100px;
-    outline: none;
-    color: #9DBFAF;
-  }
-  
-  .searchTerm:focus{
-    color: #000000;
-  }
-  
-  .searchButton {
-    width: 40px;
-    height: 50px;
-    border: 1px solid #000000;
-    background: #000000;
-    text-align: center;
-    color: #fff;
-    border-radius: 0 100px 100px 0;
-    cursor: pointer;
-    font-size: 20px;
-  }
 
-#login {
-    /* display:block;
-    width:100%; */
-    position: absolute;
-    top: 30%;
-    left: 35%; 
-    transform: translate (-50%,-50%);
-    width: 400px;
-    border-radius: 30px;
-    background: #F1FFC8;
-}
-
-#login h1{
-    text-align: center;
-    padding: 0 0 20px 0;
-}
-
-#login h2{
-    text-align: center;
-    padding:20px 20px ;
-}
-
-#login form{
-    padding: 0 40px;
-    box-sizing: border-box;
-}
-
-#form .txt_field{
-    position: relative;
-    border-bottom: 2px solid black;
-    border-radius: 30px;
-}
 
 /* .txt_field input{
     width: 100%;

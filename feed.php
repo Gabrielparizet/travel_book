@@ -61,9 +61,9 @@
             $likeInfos = $informationsLikes->fetch_assoc();
         ?>                
         <article>
-            <h3>
+            <p>
                 <time datetime='2020-02-01 11:12:13' ><?php echo $post['created'] ?></time>
-            </h3>
+            <p>
             <address>by <a href="wall.php?user_id=<?php echo $post['user_id'] ?>"><?php echo $post['author_name'] ?></a></address>
             <div>
                 <p><?php echo $post['content'] ?></p>
@@ -91,6 +91,7 @@
                         }
                     ?>
                 </small>
+            <div id="hastag">
                 <?php 
                         $tag = $post['taglist'];
                         $arrayOfTags = explode(",",$tag);
@@ -99,6 +100,7 @@
                             echo '<a href="">' . "#" . $arrayOfTags[$index] . '</a>' . ' ';
                         }
                         ?>
+            </div>
             </footer>
         </article>
         <?php } ?>

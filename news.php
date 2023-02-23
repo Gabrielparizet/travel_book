@@ -4,16 +4,16 @@
 
 <title>News</title> 
 
-<div id="wrapper">
+<div id="news">
     <main>
-        <div class="search">>
+        <div class="search">
             <form class="citySearch" action="news.php" method="get">
-                <input type="text" name="locationSearchBar" placeholder="Search for a location">
+                <input type="text" name="locationSearchBar" placeholder="Search for a location" class="searchButton">
                 <button type="submit">
                     <i class="fa fa-search"></i>
                 </button>
             </form>
-        </div>
+        <!-- </div> -->
         <?php
         // Gestion d'erreurs
         if ($mysqli->connect_errno){
@@ -106,9 +106,9 @@
             // var_dump($_SESSION['connected_id'], $postSessionID);
             ?>
             <article>
-                <h3>
+                <p>
                     <time><?php echo $post['created'] ?></time>
-                </h3>
+        </p>
                 <address><a href="wall.php?user_id=<?php echo $post['user_id'] ?>"><?php echo $post['author_name'] ?></a></address>
                 <div>
                     <p><?php echo $post['content']?></p>
@@ -136,6 +136,7 @@
                             }
                         ?>
                     </small>
+                <div id="hastag">
                     <?php 
                         $tag = $post['taglist'];
                         $arrayOfTags = explode(",",$tag);
