@@ -4,23 +4,24 @@
 
 <title>My wall</title> 
 
-<div id="wall">
+<div id="wrapper">
     <main>
     <!-- <aside> -->
         <?php
             if (isset($_GET['user_id'])){
                 $userId = intval($_GET['user_id']);
+                ?><img src="user.jpg" alt="Portrait de l'utilisatrice"/><?php
             } else {
                 $userId = intval($_SESSION['connected_id']);
+                ?><img src="donaldTrump.jpg" alt="Portrait de l'utilisatrice"/><?php
             } 
         $laQuestionEnSql = "SELECT * FROM users WHERE id= '$userId' ";
         $lesInformations = $mysqli->query($laQuestionEnSql);
         $user = $lesInformations->fetch_assoc();
         ?>
-        <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
         <section>
-            <!-- <h3>Description</h3> -->
-            <p><?php echo $user['alias']; ?>
+            <h3>Description</h3>
+            <p>On this page you will find every posts of : <?php echo $user['alias']; ?>
             </p>
             <?php 
                 if (isset($_GET['user_id'])){
@@ -207,19 +208,16 @@
                     <form action="wall.php" method="post" enctype="multipart/form-data">
                         <input type='hidden' name='message' value='achanger'>
                         <dl>
-                            <dt><label for='message'>Add a post</label></dt>
-                            <dd> 
-                                <div class="hastag-location">#Location</div>
-                                <input type="text" name="cityHashtag">
-                                <br><br>
-                                <p>Share your experience here :</p>
+                            <dt><label for='message'>Message</label></dt>
+                            <dd># Location
+                                <br>
+                                <input type="text" name="cityHashtag"><br>
+                                <label for="file">Picture</label>
+                                <input type="file" name="file"><br>
                                 <textarea name='message'></textarea>
-                                <label for="file"></label>
-                                <br><input type="file" name="file"></br>
-                                <br><input type='submit' value="Post"></br>
                             </dd>
                         </dl>
-                        
+                        <input type='submit' value="Send">
                     </form>
                 </article>
             <?php
@@ -248,9 +246,9 @@
             // echo "<pre>" . print_r($post, 1) . "</pre>";
             ?>                
             <article>
-                <p>
+                <h3>
                     <time datetime='2020-02-01 11:12:13' > <?php echo $post['created'];?> </time>
-                </p>
+                </h3>
                 <address>by <a href="wall.php?user_id=<?php echo $post['user_id'] ?>"><?php echo $post['author_name'] ?></a></address>
                 <div>
     
@@ -266,7 +264,7 @@
                             <input type="hidden" name="like_post_id" value="<?php echo $post['postID']?>"/>
                                 <input type="submit" value="♥"/>
                                     <?php 
-                                        echo $post['like_number'];
+                                        echo $post['like_number'] ;
                                         ?>
                         </form>
                                 <?php
@@ -279,7 +277,6 @@
                             }
                         ?>
                     </small>
-                <div id="hastag">
                     <?php 
                     $tag = $post['taglist'];
                     $arrayOfTags = explode(",",$tag);
@@ -288,7 +285,6 @@
                         echo '<a href="">' . "#" . $arrayOfTags[$index] . '</a>' . ' ';
                     }
                     ?>
-                </div>
                 </footer>
             </article>
         <?php 
