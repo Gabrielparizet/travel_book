@@ -195,7 +195,16 @@ body{
     margin-left: 120px ;
 }
     
-
+#wall section{
+    display: block;
+    width:10%;
+    margin:auto;
+    /* padding: 8px 16px; */
+    /* text-decoration: none; */
+    /* margin: 4px 2px; */
+    font-size: 16px;
+    font-weight: bolder;
+  }
 
 /* #wall .post {
     display: inline-block;
@@ -217,6 +226,21 @@ body{
     font-size: 16px;
     font-weight: bolder;
   }
+
+
+#wall form input[type=submit]{
+    background-color: #BAFE66;
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 8px 16px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: bolder;
+  }
+
 
 
 #wall main article{

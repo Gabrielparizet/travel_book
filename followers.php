@@ -3,15 +3,15 @@
 <title>Suiveurs</title> 
 
 <div id="wrapper">          
-    <aside>
+    <!-- <aside> -->
         <img src = "user.jpg" alt = "User profile"/>
-        <section>
+        <!-- <section> -->
             <h3>Description</h3>
             <p>  On this page you will find the list of people that are following this user's posts.
                 n° <?php echo intval($_SESSION['connected_id']) ?></p>
 
-        </section>
-    </aside>
+        <!-- </section>
+    </aside> -->
     <main class='contacts'>
         <?php
         // Etape 1: récupérer l'id de l'utilisateur

@@ -18,7 +18,7 @@
         $user = $lesInformations->fetch_assoc();
         ?>
         <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
-        <!-- <section> -->
+        <section>
             <!-- <h3>Description</h3> -->
             <p><?php echo $user['alias']; ?>
             </p>
@@ -69,7 +69,7 @@
              ?>
              <p>Followed by : <?php echo $numberOfFollowedUsers?></p>
              <p>Following : <?php echo $numberOfFollowingUsers?></p>
-        <!-- </section> -->
+        </section>
     <!-- </aside> -->
     <!-- <main> -->
         <?php
