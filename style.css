@@ -167,6 +167,17 @@ body{
     font-size: 20px;
   }
 
+#wrapper main form input[type=submit]{
+    background-color: rgb(212, 45, 45);
+    border-style: none;
+    color: white;
+    padding: 4px 10px;
+    text-decoration: none;
+    /* margin: 4px 2px; */
+    cursor: pointer;
+    border-radius: 100px;
+    font-size: 20px;
+  }
 
 #wall{
     display:block;    
@@ -215,10 +226,10 @@ body{
   }
 
 
-#wall form input[type=submit]{
-    background-color: #BAFE66;
+#wall small form input[type=submit]{
+    background-color: rgb(212, 45, 45);
     border: none;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     padding: 8px 16px;
     text-decoration: none;
     margin: 4px 2px;
@@ -249,7 +260,7 @@ body{
     margin:auto;
 }
 
-#wall #hastag {
+#wall #hashtag {
     display: inline-block;
     background: #BAFE66;
     color: #000000;
@@ -464,10 +475,3 @@ form dl dd textarea{width:40em;height: 15em;} */
     outline: none;
 
 } */
-
-
-
-
- 
- 
-

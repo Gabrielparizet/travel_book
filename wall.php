@@ -4,7 +4,7 @@
 
 <title>My wall</title> 
 
-<div id="wrapper">
+<div id="wall">
     <main>
     <!-- <aside> -->
         <?php
@@ -20,8 +20,8 @@
         $user = $lesInformations->fetch_assoc();
         ?>
         <section>
-            <h3>Description</h3>
-            <p>On this page you will find every posts of : <?php echo $user['alias']; ?>
+            <!-- <h3>Description</h3> -->
+            <p><?php echo $user['alias']; ?>
             </p>
             <?php 
                 if (isset($_GET['user_id'])){
@@ -204,22 +204,24 @@
                 }
             }
             ?>
-                <article>
-                    <form action="wall.php" method="post" enctype="multipart/form-data">
-                        <input type='hidden' name='message' value='achanger'>
+            <article>
+                <form action="wall.php" method="post" enctype="multipart/form-data">
+                    <input type='hidden' name='message' value='achanger'>
                         <dl>
-                            <dt><label for='message'>Message</label></dt>
-                            <dd># Location
-                                <br>
-                                <input type="text" name="cityHashtag"><br>
-                                <label for="file">Picture</label>
-                                <input type="file" name="file"><br>
+                            <dt><label for='message'>Add a post</label></dt>
+                            <dd> 
+                                <div class="hastag-location">#Location</div>
+                                <input type="text" name="cityHashtag">
+                                <br><br>
+                                <p>Share your experience here :</p>
                                 <textarea name='message'></textarea>
+                                <label for="file"></label>
+                                <br><input type="file" name="file"></br>
+                                <br><input type='submit' value="Post"></br>
                             </dd>
-                        </dl>
-                        <input type='submit' value="Send">
-                    </form>
-                </article>
+                        </dl>     
+                </form>
+            </article>
             <?php
         }
 
@@ -246,16 +248,16 @@
             // echo "<pre>" . print_r($post, 1) . "</pre>";
             ?>                
             <article>
-                <h3>
+                <p>
                     <time datetime='2020-02-01 11:12:13' > <?php echo $post['created'];?> </time>
-                </h3>
+                </p>
                 <address>by <a href="wall.php?user_id=<?php echo $post['user_id'] ?>"><?php echo $post['author_name'] ?></a></address>
                 <div>
     
                     <p><?php echo $post['content'];?></p>
                     <img src="./upload/<?php echo $post['picture_name']; ?>">
-                </div>                                            
-                <footer>
+                </div> 
+                <footer></footer>                                           
                     <small>
                     <?php 
                         if (isset($likeInfos) == false){
@@ -277,15 +279,17 @@
                             }
                         ?>
                     </small>
-                    <?php 
-                    $tag = $post['taglist'];
-                    $arrayOfTags = explode(",",$tag);
-                    $index = 0;
-                    for ($index = 0; $index < count($arrayOfTags); $index++) {
-                        echo '<a href="">' . "#" . $arrayOfTags[$index] . '</a>' . ' ';
-                    }
+                    <div id="hashtag">
+                        <?php 
+                        $tag = $post['taglist'];
+                        $arrayOfTags = explode(",",$tag);
+                        $index = 0;
+                        for ($index = 0; $index < count($arrayOfTags); $index++) {
+                            echo '<a href="">' . "#" . $arrayOfTags[$index] . '</a>' . ' ';
+                        }
                     ?>
-                </footer>
+                    </div>
+                    </footer> 
             </article>
         <?php 
             } 
