@@ -107,9 +107,9 @@
             // var_dump($_SESSION['connected_id'], $postSessionID);
             ?>
             <article>
-                <h3>
+                <p>
                     <time><?php echo $post['created'] ?></time>
-                </h3>
+        </p>
                 <address><a href="wall.php?user_id=<?php echo $post['user_id'] ?>"><?php echo $post['author_name'] ?></a></address>
                 <div>
                     <p><?php echo $post['content']?></p>
