@@ -69,7 +69,6 @@
                 <p><?php echo $post['content'] ?></p>
                 <img src="./upload/<?php echo $post['picture_name']; ?>">
             </div>                                            
-            <footer>
                 <small>
                     <?php 
                         if (isset($likeInfos) == false){
@@ -101,7 +100,6 @@
                         }
                         ?>
             </div>
-            </footer>
         </article>
         <?php } ?>
     </main>
