@@ -10,11 +10,54 @@
         <?php
             if (isset($_GET['user_id'])){
                 $userId = intval($_GET['user_id']);
-                ?><img src="user.jpg" alt="Portrait de l'utilisatrice"/><?php
             } else {
-                $userId = intval($_SESSION['connected_id']);
-                ?><img src="donaldTrump.jpg" alt="Portrait de l'utilisatrice"/><?php
+                $userId = intval($_SESSION['connected_id']);           
             } 
+            $sQlRequestForProfilePic = "SELECT profile_picture as profilePic FROM users WHERE id = " . $userId;
+            $sqlInfosForDisplayPP = $mysqli->query($sQlRequestForProfilePic);
+            $profilePictureInfos = $sqlInfosForDisplayPP->fetch_assoc();
+                ?><img src="./profile_pictures/<?php echo $profilePictureInfos['profilePic']; ?>" alt="Portrait de l'utilisatrice"/>
+                <form action="wall.php" method="post" enctype="multipart/form-data">
+                    <label for="profile_picture">Fichier</label>
+                    <input type="file" name="profile_picture">
+                    <button type="submit">Enregistrer</button>
+                </form>
+                <?php
+        if (isset($_FILES['profile_picture'])){
+                $tmpNamePP = $_FILES['profile_picture']['tmp_name'];
+                $namePP = $_FILES['profile_picture']['name'];
+                $sizePP = $_FILES['profile_picture']['size'];
+                $errorPP = $_FILES['profile_picture']['error'];
+                $typePP = $_FILES['profil_picture']['type'];
+
+                // Check picture extension and size
+                $tabExtensionPP = explode('.', $namePP);
+                $extensionPP = strtolower(end($tabExtensionPP));
+
+                $authorizedExtension = ['jpg', 'jpeg', 'gif', 'png'];
+                $maxSize = 40000000;
+
+                if (in_array($extensionPP, $authorizedExtension) && $sizePP <= $maxSize && $errorPP == 0){
+
+                    $uniqueNamePP = uniqid('', true);
+                    $fileNamePP = $uniqueNamePP.'.'.$extensionPP;
+
+                    move_uploaded_file($tmpNamePP, './profile_pictures/'.$fileNamePP);
+                    var_dump($fileNamePP);
+                } else {
+                    echo 'Wrong extension or max size exceeded.';
+                }
+                $sQlStatementForProfilePic = "UPDATE users "
+                . "SET profile_picture = '". $fileNamePP . "'"
+                . "WHERE id = " . $userId;
+                $sQlInformationsPP = $mysqli->query($sQlStatementForProfilePic);
+                $profilePic = $sQlInformationsPP->fetch_assoc();
+                header('Location: wall.php?user_id=' . $userId);
+        } else {
+        }
+
+
+        
         $laQuestionEnSql = "SELECT * FROM users WHERE id= '$userId' ";
         $lesInformations = $mysqli->query($laQuestionEnSql);
         $user = $lesInformations->fetch_assoc();
@@ -119,7 +162,6 @@
                 } else {
                     'Wrong extension or max size exceeded.';
                 }
-                var_dump($fileName);
                 $cityHashTagContent = $_POST['cityHashtag'];
                 $cityHashTagContent = $mysqli->real_escape_string($cityHashTagContent);
                 $lInstructionSqlHashtag = "SELECT id as location_id, label as location_label FROM tags WHERE label = '" . $cityHashTagContent . "'";
